@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年度报告 - 登录验证</title>
+  <script>
+    const hash = window.location.hash;
+    if (window.opener) {
+      // send them to the opening window
+      window.opener.postMessage(hash);
+      // close the popup
+      window.close();
+    }
+  </script>
+</head>
+
+</html>
