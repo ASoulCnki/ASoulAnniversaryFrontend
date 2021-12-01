@@ -6,6 +6,7 @@ specifiers:
   '@types/react-dom': ^17.0.0
   '@types/react-transition-group': ^4.4.4
   '@vitejs/plugin-react': ^1.0.0
+  dayjs: ^1.10.7
   eslint: ^8.3.0
   preact: ^10.6.1
   react: ^17.0.2
@@ -23,6 +24,7 @@ specifiers:
   windicss: ^3.2.1
 
 dependencies:
+  dayjs: 1.10.7
   preact: 10.6.1
   react: 17.0.2
   react-div-100vh: 0.7.0_react@17.0.2
@@ -863,6 +865,10 @@ packages:
   /damerau-levenshtein/1.0.7:
     resolution: {integrity: sha512-VvdQIPGdWP0SqFXghj79Wf/5LArmreyMsGLa6FG6iC4t3j7j5s71TrwWmT/4akbDQIqjfACkLZmjXhA7g2oUZw==}
     dev: true
+
+  /dayjs/1.10.7:
+    resolution: {integrity: sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
