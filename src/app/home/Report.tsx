@@ -1,7 +1,8 @@
+import useSWR from "swr"
+import dayjs, { unix } from "dayjs"
+
 import type { FC } from "react"
 import type { ReportData } from "~/interface"
-import dayjs, { unix } from "dayjs"
-import useSWR from "swr"
 
 type ReportProps = {
   token: string

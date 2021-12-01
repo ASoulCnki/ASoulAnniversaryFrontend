@@ -1,5 +1,6 @@
-import type { FC } from "react"
 import { usePostTokenMessage } from "~/helpers/token"
+
+import type { FC } from "react"
 
 export const Redirect: FC = () => {
   usePostTokenMessage()
