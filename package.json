@@ -10,6 +10,7 @@
     "preview": "vite preview --host"
   },
   "dependencies": {
+    "dayjs": "^1.10.7",
     "preact": "^10.6.1",
     "react": "^17.0.2",
     "react-div-100vh": "^0.7.0",

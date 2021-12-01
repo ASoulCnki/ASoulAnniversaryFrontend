@@ -6,5 +6,5 @@ interface ImportMetaEnv {
   VITE_APP_TOKEN_KEY: string
   VITE_APP_REPORT_DATA_KEY: string
   VITE_APP_OAUTH_URL: string;
-  VITE_AUTH_REPORT_DATA_URL: string;
+  VITE_APP_REPORT_DATA_URL: string;
 }
