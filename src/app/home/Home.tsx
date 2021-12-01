@@ -1,12 +1,11 @@
-import { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ErrorBoundary } from "react-error-boundary"
-import type { FC } from "react"
 import { getTokenFromLocalStorage, removeTokenFromLocalStorage } from "~/helpers/token"
 import { Loading } from "~/components/Loading"
 import { Report } from "./Report"
 
-const BACKGROUND_URL = "/background_1.svg"
+import type { FC } from "react"
 
 const useCheckToken = (token: string | null, onMissing: () => void) => {
   useEffect(() => {
@@ -15,6 +14,7 @@ const useCheckToken = (token: string | null, onMissing: () => void) => {
     }
   })
 }
+
 export const Home: FC = () => {
 
   const navigate = useNavigate()

@@ -1,14 +1,13 @@
-// import { useNavigate } from "react-router-dom"
-
-import type { FC } from "react"
 import { useState } from "react"
-import { Modal } from "~/components/Modal"
+import { useNavigate } from "react-router-dom"
 import { MdClose } from "react-icons/md"
+import { setTokenToLocalStorage, useReceiveTokenMessage } from "~/helpers/token"
+import { Modal } from "~/components/Modal"
 import { Cover } from "./Cover"
 import { UserAgreement } from "./UserAgreement"
 import { OAuthIFrame } from "./OAuthIFrame"
-import { setTokenToLocalStorage, useReceiveTokenMessage } from "~/helpers/token"
-import { useNavigate } from "react-router-dom"
+
+import type { FC } from "react"
 
 const getOauthLoginUrl = () => {
   const { VITE_APP_OAUTH_URL } = import.meta.env
