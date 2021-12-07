@@ -21,7 +21,7 @@ const wrapperTransitionStyles: Record<string, CSSProperties> = {
 type WrapperTransitionStatus = keyof (typeof wrapperTransitionStyles)
 
 const backgroundStyles: CSSProperties = {
-  height: "100%",
+  height: window.innerHeight,
   width: "100%",
   backgroundColor: "rgba(0, 0, 0, .3)",
   transition: "opacity 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000)"
@@ -64,17 +64,15 @@ export const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => {
   return (
     <Transition in={isOpen} timeout={400} nodeRef={refWrapper}>
       {(state: WrapperTransitionStatus) => <div ref={refWrapper} style={{ ...wrapperStyles, ...wrapperTransitionStyles[state] }} >
-        <Div100vh>
-          <Transition in={isOpen} timeout={400} nodeRef={refBackground}>
-            {(state: BackgroundTransitionStatus) => <div ref={refBackground} style={{ ...backgroundStyles, ...backgroundTransitionStyles[state] }}>
-              <Transition in={isOpen} timeout={400} nodeRef={refModal}>
-                {(state: ModalTransitionStatus) => <div ref={refModal} style={{ ...modalStyles, ...modalTransitionStyles[state] }}>
-                  {children}
-                </div>}
-              </Transition>
-            </div>}
-          </Transition>
-        </Div100vh>
+        <Transition in={isOpen} timeout={400} nodeRef={refBackground}>
+          {(state: BackgroundTransitionStatus) => <div ref={refBackground} style={{ ...backgroundStyles, ...backgroundTransitionStyles[state] }}>
+            <Transition in={isOpen} timeout={400} nodeRef={refModal}>
+              {(state: ModalTransitionStatus) => <div ref={refModal} style={{ ...modalStyles, ...modalTransitionStyles[state] }}>
+                {children}
+              </div>}
+            </Transition>
+          </div>}
+        </Transition>
       </div>}
     </Transition>
   )

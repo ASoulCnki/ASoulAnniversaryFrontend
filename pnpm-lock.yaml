@@ -1,16 +1,17 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@lottiefiles/react-lottie-player': ^3.4.1
   '@luooooob/eslint-config': ^0.5.0
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   '@types/react-transition-group': ^4.4.4
   '@vitejs/plugin-react': ^1.0.0
+  cubic-bezier-easing: ^1.0.12
   dayjs: ^1.10.7
   eslint: ^8.3.0
   preact: ^10.6.1
   react: ^17.0.2
-  react-div-100vh: ^0.7.0
   react-dom: ^17.0.2
   react-error-boundary: ^3.1.4
   react-icons: ^4.3.1
@@ -24,10 +25,11 @@ specifiers:
   windicss: ^3.2.1
 
 dependencies:
+  '@lottiefiles/react-lottie-player': 3.4.1_react@17.0.2
+  cubic-bezier-easing: 1.0.12
   dayjs: 1.10.7
   preact: 10.6.1
   react: 17.0.2
-  react-div-100vh: 0.7.0_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-error-boundary: 3.1.4_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
@@ -380,6 +382,15 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@lottiefiles/react-lottie-player/3.4.1_react@17.0.2:
+    resolution: {integrity: sha512-HKhclI0dScyaJHPEKSyMaC7J8ZaTvVKy3f7Ru6h+Ygavvr4Zy7Jyd/YK+jYtulKIsxQC/gF6qGmWcsp65zYx+w==}
+    peerDependencies:
+      react: ^17.0.2
+    dependencies:
+      lottie-web: 5.8.1
+      react: 17.0.2
+    dev: false
 
   /@luooooob/eslint-config/0.5.0_eslint@8.3.0+typescript@4.5.2:
     resolution: {integrity: sha512-8VrotWrft8Mj2TsjR4L0aGMQhf0Q1M8w1G9PfMMDWdPSTZ3bsa9op7Tnp7d/sKmDLV42fAitYDFp9mMX9+p75w==}
@@ -861,6 +872,10 @@ packages:
 
   /csstype/3.0.10:
     resolution: {integrity: sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==}
+
+  /cubic-bezier-easing/1.0.12:
+    resolution: {integrity: sha512-14HTP/Fm2djQyWnXLt2Sv9xiTbVWDPiM1HbJ5ywDvil5yHxmAF9E1Xn+pv580ZPvf2DU7PDKenTzWt7Nqr6ScA==}
+    dev: false
 
   /damerau-levenshtein/1.0.7:
     resolution: {integrity: sha512-VvdQIPGdWP0SqFXghj79Wf/5LArmreyMsGLa6FG6iC4t3j7j5s71TrwWmT/4akbDQIqjfACkLZmjXhA7g2oUZw==}
@@ -1877,6 +1892,10 @@ packages:
     dependencies:
       js-tokens: 4.0.0
 
+  /lottie-web/5.8.1:
+    resolution: {integrity: sha512-9gIizWADlaHC2GCt+D+yNpk5l2clZQFqnVWWIVdY0LnxC/uLa39dYltAe3fcmC/hrZ2IUQ8dLlY0O934Npjs7Q==}
+    dev: false
+
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
@@ -2136,14 +2155,6 @@ packages:
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
-
-  /react-div-100vh/0.7.0_react@17.0.2:
-    resolution: {integrity: sha512-I3d77tQyaSlOx/6vurDDLk7upb5GA2ldEtVXkk7Kn5cy+tLlS0KlqDK14xUxlxh7jz4StjgKcwFyrpymsPpomA==}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      react: 17.0.2
-    dev: false
 
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
