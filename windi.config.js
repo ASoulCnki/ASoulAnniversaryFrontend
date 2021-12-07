@@ -36,7 +36,14 @@ export default defineConfig({
         ]
       },
       backgroundImage: {
-        default: "url(/background.svg)"
+        default: "url(/background.svg)",
+        default1: "url(/background1.svg)",
+        default2: "url(/background2.svg)",
+        default3: "url(/background3.svg)",
+        "apple-text": "linear-gradient(75deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 33.33%,  rgba(255,255,255,0) 66.67%, rgba(255,255,255,0) 100%)"
+      },
+      backgroundSize: {
+        "size-apple-text": "300% 100%"
       }
     }
   },

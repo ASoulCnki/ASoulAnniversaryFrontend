@@ -22,14 +22,14 @@ export const Home: FC = () => {
 
   useCheckToken(token, () => navigate("/login"))
 
-  const handleLogout = () => {
-    removeTokenFromLocalStorage()
-    navigate("/login")
-  }
+  // const handleLogout = () => {
+  //   removeTokenFromLocalStorage()
+  //   navigate("/login")
+  // }
 
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center relative bg-default bg-cover">
-      <div className="p-4 float-right text-white" onClick={handleLogout}>注 销</div>
+    <div className="">
+      {/* <div className="p-4  float-right text-white" onClick={handleLogout}>注 销</div> */}
       <ErrorBoundary fallback={<Loading />}>
         <Suspense fallback={<Loading />}>
           {token && <Report token={token}/>}
