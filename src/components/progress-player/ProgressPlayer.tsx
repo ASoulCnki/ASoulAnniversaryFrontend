@@ -9,16 +9,18 @@ type HTMLPLayerElement = HTMLElement & {
 
 type ProgressPlayerProps = {
   progress: number
+  src: string
+  maxFrame: number
 }
 
-export const ProgressPlayer: FC<ProgressPlayerProps> = ({ progress }) => {
+export const ProgressPlayer: FC<ProgressPlayerProps> = ({ progress, src, maxFrame }) => {
   const [isReady, setIsReady] = useState(false)
   const playerRef = useRef<Player>(null)
   useEffect(() => {
     if (true) {
-      playerRef.current?.setSeeker(Math.round(progress * 100), false)
+      playerRef.current?.setSeeker(Math.round(progress * maxFrame), false)
     }
-  }, [isReady, progress])
+  }, [isReady, maxFrame, progress])
   return <Player
     ref={playerRef}
     onEvent={event => {
@@ -26,7 +28,7 @@ export const ProgressPlayer: FC<ProgressPlayerProps> = ({ progress }) => {
         setIsReady(true)
       }
     }}
-    src="/book-lottie.json"
+    src={src}
     style={{ height: "300px", width: "300px" }}
   />
 }
