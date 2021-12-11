@@ -1,10 +1,10 @@
-import { defineConfig } from "windicss/helpers"
-import typography from "windicss/plugin/typography"
+const typography = require("@tailwindcss/typography")
 
-export default defineConfig({
-  extract: {
-    include: ["src/**/*.tsx", "index.html"]
-  },
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{ts,tsx}"
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -47,12 +47,7 @@ export default defineConfig({
       }
     }
   },
-
   plugins: [
     typography
   ]
-})
-// backgroundImage: (theme) => {
-//   'hero-lg': "url('/storage/img/sys/lg-hero.jpg')",
-//   'hero-sm': "url('/storage/img/sys/sm-hero.jpg')",
-// },
+}
