@@ -1,11 +1,10 @@
 import type { CSSProperties, FC } from "react"
 import { useRef } from "react"
 import { Transition } from "react-transition-group"
-import Div100vh from "react-div-100vh"
 
 const wrapperStyles: CSSProperties = {
-  height: "100vh",
-  width: "100vw",
+  height: "100%",
+  width: "100%",
   position: "fixed",
   top: 0,
   left: 0
