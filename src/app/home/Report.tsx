@@ -3,7 +3,7 @@ import dayjs, { unix } from "dayjs"
 
 import { EffectSticky } from "~/components/apple-effect"
 import { EffectStickyItem } from "~/components/apple-effect/EffectStickyItem"
-import { ProgressPlayer } from "~/components/apple-effect/progress-player"
+import { Book, Qoute } from "~/components/apple-effect/progress-player"
 
 import type { FC } from "react"
 import type { ReportResponse } from "~/interface"
@@ -89,27 +89,29 @@ export const Report: FC<ReportProps> = ({ token }) => {
             {progress => <div className="w-full h-full absolute inset-0 flex flex-col justify-center items-center">
               <div className="relative" style={{ bottom: progress * 64, opacity: linearInOut(progress, 0.2) }}>
                 <div className="my-5 text-2xl text-fuchsia-700" >字数加起来相当于 <span className="text-5xl">800</span> 本西游记, </div>
-                <ProgressPlayer
+                <Book
                   progress={progress}
                 />
               </div>
             </div>}
           </EffectStickyItem>
 
-          <EffectStickyItem from={0} to={400}>
-            {progress => <span className="w-10 h-10 text-white fixed inset-0">{progress * 400}</span>}
-          </EffectStickyItem>
-
-          {/*
-          <EffectStickyItem from={0} to={50}>
+          <EffectStickyItem from={250} to={300}>
             {progress => <div className="w-full h-full absolute inset-0 flex flex-col justify-center items-center">
-              <div className="relative top-10" style={{}}>
-                <p>{progress * 200}</p>
-                <div className="my-5 text-3xl text-fuchsia-100"  >你好0，{data.name}</div>
-                <div className="my-5 text-2xl text-fuchsia-100"  >从<span className="text-5xl">{unix(data.start_from).format("YYYY年M月D日")}</span>开始，你已经陪伴A-SOUL走过了{dayjs().diff(unix(data.start_from), "d")}天</div>
+              <div className="relative" style={{ bottom: progress * 64, opacity: linearInOut(progress, 0.2) }}>
+              <div className="my-5 text-3xl text-lime-100" >{unix(data.data.user.time).format("YYYY年M月D日")}，你第一次在{getMemberName(data.data.reply_first.uid)}</div>
+                <div className="my-5 text-3xl text-lime-100" >的评论区发送回复，你说：</div>
+                <div className="my-5 text-3xl text-lime-100 shadow-xl bg-sky-900 border-solid min-w-30 min-h-30 items-center justify-between flex rounded-lg border-2 relative" >
+                  <Qoute
+                    progress={progress}
+                  />
+                  <span>{data.data.reply_first.content}</span>
+                  <div className="w-20"></div>
+                </div>
+                <div className="my-5 text-3xl text-lime-100" >这是历史性的一刻！当时的心情，你还记得么？</div>
               </div>
             </div>}
-          </EffectStickyItem> */}
+          </EffectStickyItem>
 
         </EffectSticky>
       </>}
