@@ -6,7 +6,7 @@ import { EffectStickyItem } from "~/components/apple-effect/EffectStickyItem"
 import { ProgressPlayer } from "~/components/apple-effect/progress-player"
 
 import type { FC } from "react"
-import type { ReportData } from "~/interface"
+import type { ReportResponse } from "~/interface"
 
 const linearIn = (progress: number, factor: number) => Math.min(progress * (1 / factor), 1)
 
@@ -18,13 +18,26 @@ const linearInOut = (progress: number, factor: number) => progress <= 0.5
 
 const subProgress = (progress: number, from: number, to: number) => (progress - from) / (to - from)
 
+const getMemberName = (uid: number) => {
+  enum Member {
+    "A-SOUL_Official" = 703007996, 
+    "向晚大魔王" = 672346917,
+    "贝拉kira" = 672353429,
+    "珈乐Carol" = 351609538,
+    "嘉然今天吃什么" = 672328094,
+    "乃琳Queen" = 672342685
+  };
+
+  return Member[uid]
+}
+
 type ReportProps = {
   token: string
 }
 
 export const Report: FC<ReportProps> = ({ token }) => {
   const { VITE_APP_REPORT_DATA_URL } = import.meta.env
-  const { data } = useSWR<ReportData>([VITE_APP_REPORT_DATA_URL, token])
+  const { data } = useSWR<ReportResponse>([VITE_APP_REPORT_DATA_URL, token])
 
   return (
 
@@ -37,18 +50,21 @@ export const Report: FC<ReportProps> = ({ token }) => {
           <EffectStickyItem from={125} to={250}>
             {progress => <div className="h-full absolute inset-0 bg-default2" style={{ opacity: linearInOut(progress, 0.2) }} /> }
           </EffectStickyItem>
+          <EffectStickyItem from={225} to={350}>
+            {progress => <div className="h-full absolute inset-0 bg-default3" style={{ opacity: linearInOut(progress, 0.2) }} /> }
+          </EffectStickyItem>
 
           <EffectStickyItem from={0} to={50}>
             {progress => <div className="h-full absolute inset-0 flex flex-col justify-center items-center">
               <div style={{ opacity: linearOut(progress, 0.2), transform: `translateY(${-progress * 50}%)` }}>
-                <p className="my-5 text-5xl text-white" >你好，{data.name}</p>
+                <p className="my-5 text-5xl text-white" >你好，{data.data.user.name}</p>
               </div>
             </div>}
           </EffectStickyItem>
           <EffectStickyItem from={50} to={100}>
             {progress => <div className="w-full h-full absolute inset-0 flex flex-col justify-center items-center">
               <div style={{ opacity: linearInOut(progress, 0.2), transform: `translateY(${-progress * 50}%)` }}>
-                <div className="my-5 text-2xl text-white" >从<span className="text-3xl">{unix(data.start_from).format("YYYY年M月D日")}</span>开始，你已经陪伴A-SOUL走过了<span className="text-5xl">{dayjs().diff(unix(data.start_from), "d")}</span>天</div>
+                <div className="my-5 text-2xl text-white" >从<span className="text-3xl">{unix(data.data.user.time).format("YYYY年M月D日")}</span>开始，你已经陪伴A-SOUL走过了<span className="text-5xl">{dayjs().diff(unix(data.data.user.time), "d")}</span>天</div>
               </div>
             </div>}
           </EffectStickyItem>
