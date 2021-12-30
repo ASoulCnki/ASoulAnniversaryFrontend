@@ -57,11 +57,11 @@ pnpm build:production
 
 ```
 
-docker build -t luooooob/asoul-data-report-2021:0.1.0-test --build-arg MODE=test
+docker build -t luooooob/asoul-data-report-2021:0.0.0-test -t luooooob/asoul-data-report-2021:test --build-arg MODE=test .
 
-docker build -t luooooob/asoul-data-report-2021:0.1.0-stage --build-arg MODE=stage
+docker build -t luooooob/asoul-data-report-2021:0.0.0-stage -t luooooob/asoul-data-report-2021:stage --build-arg MODE=stage .
 
-docker build -t luooooob/asoul-data-report-2021:0.1.0-production --build-arg MODE=production
+docker build -t luooooob/asoul-data-report-2021:0.0.0-production -t luooooob/asoul-data-report-2021:production --build-arg MODE=production .
 ```
 
 ### 预览构建的版本
