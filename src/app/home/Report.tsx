@@ -59,7 +59,7 @@ export const Report: FC<ReportProps> = ({ token }) => {
               </div>
             </div>}
           </EffectStickyItem>
-          <EffectStickyItem from={140} to={200}>
+          <EffectStickyItem from={150} to={200}>
             {progress => <div className="w-full h-full absolute inset-0 flex flex-col justify-center items-center">
               <div className="relative" style={{ bottom: progress * 64, opacity: linearInOut(progress, 0.2) }}>
                 <div className="my-5 text-3xl text-fuchsia-700" >这一年，AU 们一起发送了</div>

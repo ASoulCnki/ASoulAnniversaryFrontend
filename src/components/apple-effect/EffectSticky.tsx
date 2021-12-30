@@ -17,7 +17,7 @@ export const EffectSticky: FC<EffectStickyProps> = ({ children, max = 200, refRo
 
   const wrapperStyles: CSSProperties = {
     width: "100%",
-    height: window.innerHeight * (max / 100 + 1)
+    height: window.innerHeight * (max / 20 + 1)
   }
 
   const sectionStyles: CSSProperties = {
@@ -35,7 +35,7 @@ export const EffectSticky: FC<EffectStickyProps> = ({ children, max = 200, refRo
     const handleWindowScoll = () => {
       if (wrapper && section) {
         const distance = - (wrapper.getBoundingClientRect().top - section.getBoundingClientRect().top)
-        const value = distance / (window.innerHeight / 100)
+        const value = distance / (window.innerHeight / 20)
         setDistance(value)
       }
     }
