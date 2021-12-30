@@ -40,6 +40,7 @@ export default defineConfig({
         default1: "url(/background1.svg)",
         default2: "url(/background2.svg)",
         default3: "url(/background3.svg)",
+        default4: "url(/background4.svg)",
         "apple-text": "linear-gradient(75deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 33.33%,  rgba(255,255,255,0) 66.67%, rgba(255,255,255,0) 100%)"
       },
       backgroundSize: {
