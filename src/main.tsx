@@ -3,6 +3,14 @@ import { App } from "~/pages/_app"
 
 import "./index.css"
 
+const { VITE_APP_ENABLE_MSW, VITE_APP_VERSION, MODE } = import.meta.env
+
+console.log(`
+  version: ${VITE_APP_VERSION},
+  mode: ${MODE},
+  msw: ${VITE_APP_ENABLE_MSW}
+`)
+
 const startApp = () => {
   const container = document.getElementById("react-app") as HTMLDivElement
   const root = createRoot(container)
@@ -11,7 +19,7 @@ const startApp = () => {
 }
 
 const main = async () => {
-  if (process.env.NODE_ENV === "development") {
+  if (VITE_APP_ENABLE_MSW === "true") {
     try {
       const { worker } = await import("~/mocks/browser")
       await worker.start({

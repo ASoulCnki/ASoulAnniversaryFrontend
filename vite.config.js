@@ -1,18 +1,17 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 
-export default defineConfig(({ }) => {
+const version = process.env.npm_package_version
+process.env.VITE_APP_VERSION = JSON.stringify(version).replace(/(^"|"$)/g, "")
+
+export default defineConfig(({}) => {
   return {
     resolve: {
-      alias: [
-        { find: "~", replacement: "/src" }
-      ]
+      alias: [{ find: "~", replacement: "/src" }],
     },
-    plugins: [
-      react()
-    ],
+    plugins: [react()],
     build: {
-      target: "esnext"
-    }
+      target: "esnext",
+    },
   }
 })
