@@ -25,4 +25,4 @@ jobs:
           build-args: |
             MODE=${{ matrix.mode }}
           push: true
-          tags: ${{ secrets.IMAGE_NAME }}:${{ matrix.mode }}
+          tags: ${{ secrets.DOCKERHUB_IMAGE_NAME }}:${{ matrix.mode }}
