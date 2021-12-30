@@ -21,7 +21,7 @@ export const usePostTokenMessage = () => {
     const { hash } = window.location
     if (hash?.startsWith("#token=")) {
       const [, token] = hash.substring(1).split("=")
-      window.parent.postMessage({ token })
+      setTokenToLocalStorage(token)
     }
   }, [])
 }

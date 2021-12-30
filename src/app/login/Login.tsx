@@ -1,11 +1,8 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { MdClose } from "react-icons/md"
+import { useState, useEffect } from "react"
 import { setTokenToLocalStorage, useReceiveTokenMessage } from "~/helpers/token"
 import { Modal } from "~/components/Modal"
 import { Cover } from "./Cover"
 import { UserAgreement } from "./UserAgreement"
-import { OAuthIFrame } from "./OAuthIFrame"
 
 import type { FC } from "react"
 
@@ -20,24 +17,15 @@ const getOauthLoginUrl = () => {
 export const Login: FC = () => {
 
   const [isUserAgreementOpen, setIsUserAgreementOpen] = useState(false)
-  const [isOAuthIFrameOpen, setIsOAuthIFrameOpen] = useState(false)
 
   const handleCoverPrimaryClick = () => setIsUserAgreementOpen(true)
   const handleUserAgreementAgree = () => {
     setIsUserAgreementOpen(false)
-    setIsOAuthIFrameOpen(true)
+    window.location.assign(getOauthLoginUrl());
   }
   const handleUserAgreementDisagree = () => setIsUserAgreementOpen(false)
   const handleUserAgreementClose = () => setIsUserAgreementOpen(false)
-  const handleOAuthIFrameClose = () => setIsOAuthIFrameOpen(false)
-  const iframeSrc = getOauthLoginUrl()
 
-  const navigate = useNavigate()
-  const handleOAuthSuccess = (token: string) => {
-    setTokenToLocalStorage(token)
-    navigate("/")
-  }
-  useReceiveTokenMessage(handleOAuthSuccess)
   return (
     <>
       <Cover onPrimaryClick={handleCoverPrimaryClick} />
@@ -45,13 +33,6 @@ export const Login: FC = () => {
         <div className="w-full h-full flex flex-col justify-center items-center" >
           <div className="w-11/12 h-11/12 max-w-screen-md max-h-screen-sm bg-white shadow-md rounded-xl">
             <UserAgreement onAgree={handleUserAgreementAgree} onDisagree={handleUserAgreementDisagree}/>
-          </div>
-        </div>
-      </Modal>
-      <Modal isOpen={isOAuthIFrameOpen} onClose={handleOAuthIFrameClose}>
-        <div className="w-full h-full flex flex-col justify-center items-center" >
-          <div className="w-11/12 h-11/12 max-w-screen-md max-h-screen-sm overflow-hidden bg-white shadow-md rounded-xl" >
-            <OAuthIFrame iframeSrc={iframeSrc}/>
           </div>
         </div>
       </Modal>
