@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "tsc",
     "format": "eslint . --fix && prettier --write .",
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview --host"
   },
   "dependencies": {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oauth</title>
+    <script>
+      const ids = [
+        {
+          name: "身份一",
+          token: "daskjcnakjsndasa",
+        },
+      ]
+
+      const qs = new URLSearchParams(window.location.search);
+      const redirectUri = qs.get("redirect_uri") 
+
+      if (!redirectUri) {
+        alert("参数错误")
+      } else {
+        document.addEventListener('DOMContentLoaded',() => {
+          document.querySelector("#ul").innerHTML = ids
+            .map(({ name, token }) => `
+                <a href="${redirectUri}#token=${token}" class="">
+                  ${name}
+                </a>
+              `
+            )
+            .join("")
+        })
+      }
+    </script>
+</head>
+<body>
+    <p>告诉我们你的B站ID</p>
+    <ul id="ul">
+
+    </ul>
+</body>
+</html>

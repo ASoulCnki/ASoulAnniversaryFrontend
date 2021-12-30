@@ -1,12 +1,12 @@
-import type { RefObject } from "preact"
-import type { CSSProperties, FC } from "react"
+import type { CSSProperties, FC, ReactElement, RefObject } from "react"
 
 import { useState, useRef, useEffect, useMemo } from "react"
-import { EffectStickyContext } from "./EffectStickyContext"
+// import { EffectStickyContext } from "./EffectStickyContext"
 
 type EffectStickyProps = {
   max: number
   refRoot?: RefObject<HTMLDivElement>
+  children: (scrollY: number) => ReactElement
 }
 
 export const EffectSticky: FC<EffectStickyProps> = ({ children, max = 200, refRoot }) => {
@@ -34,25 +34,26 @@ export const EffectSticky: FC<EffectStickyProps> = ({ children, max = 200, refRo
 
     const handleWindowScoll = () => {
       if (wrapper && section) {
-        const distance = - (wrapper.getBoundingClientRect().top - section.getBoundingClientRect().top)
-        const value = distance / (window.innerHeight / 100)
-        setDistance(value)
+        const wrapperTop = wrapper.getBoundingClientRect().top
+        const sectionTop = section.getBoundingClientRect().top
+        setDistance(sectionTop - wrapperTop)
       }
     }
+
     root.addEventListener("scroll", handleWindowScoll)
     return () => {
       root.removeEventListener("scroll", handleWindowScoll)
     }
   }, [max, refRoot])
 
-  const scrollY = useMemo(() => distance, [distance])
+  const progress = useMemo(() => distance / (window.innerHeight / 100), [distance])
 
   return (
     <div style={wrapperStyles} ref={refWrapper}>
       <div style={sectionStyles} ref={refSection}>
-        <EffectStickyContext.Provider value={{ scrollY }}>
-          {children}
-        </EffectStickyContext.Provider>
+        {/* <EffectStickyContext.Provider value={{ progress }}> */}
+        {children(progress)}
+        {/* </EffectStickyContext.Provider> */}
       </div>
     </div>
   )

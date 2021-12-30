@@ -1,6 +1,5 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
-import windiCSS from "vite-plugin-windicss"
 
 export default defineConfig(({ }) => {
   return {
@@ -10,8 +9,7 @@ export default defineConfig(({ }) => {
       ]
     },
     plugins: [
-      react(),
-      windiCSS()
+      react()
     ],
     build: {
       target: "esnext"

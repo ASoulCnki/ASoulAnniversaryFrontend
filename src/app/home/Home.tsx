@@ -2,7 +2,7 @@ import { Suspense, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ErrorBoundary } from "react-error-boundary"
 import { getTokenFromLocalStorage, removeTokenFromLocalStorage } from "~/helpers/token"
-import { Loading } from "~/components/Loading"
+import { Loading } from "~/components/loading/Loading"
 import { Report } from "./Report"
 
 import type { FC } from "react"
