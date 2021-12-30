@@ -9,7 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        mode: ["test", "stage", "production"]
     steps:
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -17,26 +19,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build and push - test
+      - name: Build and push
         uses: docker/build-push-action@v2
         with:
           build-args: |
-            MODE=test
+            MODE=${{ matrix.mode }}
           push: true
-          tags: ${{ secrets.IMAGE_NAME }}:test
-
-      - name: Build and push - stage
-        uses: docker/build-push-action@v2
-        with:
-          build-args: |
-            MODE=stage
-          push: true
-          tags: ${{ secrets.IMAGE_NAME }}:stage
-
-      - name: Build and push - production
-        uses: docker/build-push-action@v2
-        with:
-          build-args: |
-            MODE=production
-          push: true
-          tags: ${{ secrets.IMAGE_NAME }}:production
+          tags: ${{ secrets.IMAGE_NAME }}:${{ matrix.mode }}
