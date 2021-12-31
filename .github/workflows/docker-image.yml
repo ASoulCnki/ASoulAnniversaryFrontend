@@ -3,8 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+    tags:
+      - "*"
 
 jobs:
   build:
@@ -13,6 +13,14 @@ jobs:
       matrix:
         mode: ["test", "stage", "production"]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ secrets.DOCKERHUB_IMAGE_NAME }}
+
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
@@ -25,4 +33,4 @@ jobs:
           build-args: |
             MODE=${{ matrix.mode }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_IMAGE_NAME }}:${{ matrix.mode }}
+          tags: ${{ steps.meta.outputs.tags }}-${{ matrix.mode }}
