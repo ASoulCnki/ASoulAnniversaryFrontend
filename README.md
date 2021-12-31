@@ -1,6 +1,6 @@
 # ASOUL-DATA-REPORT-2021
 
-ASOUL年度数据报告2021 前端仓库
+ASOUL 年度数据报告 2021 前端仓库
 
 ## 开发
 
@@ -41,13 +41,41 @@ VS Code 配置已在 `.vscode/settings.json` 中配置好, 只需安装 `ESLint`
 ### 构建
 
 ```
-pnpm build
+
+# test 环境
+pnpm build:test
+
+# stage 环境
+pnpm build:stage
+
+# production 环境
+pnpm build:production
+
+```
+
+### Docker 镜像构建
+
+```
+
+docker build -t luooooob/asoul-data-report-2021:0.0.0-test -t luooooob/asoul-data-report-2021:test --build-arg MODE=test .
+
+docker build -t luooooob/asoul-data-report-2021:0.0.0-stage -t luooooob/asoul-data-report-2021:stage --build-arg MODE=stage .
+
+docker build -t luooooob/asoul-data-report-2021:0.0.0-production -t luooooob/asoul-data-report-2021:production --build-arg MODE=production .
 ```
 
 ### 预览构建的版本
 
 ```
 pnpm preview
+```
+
+### 杂项
+
+setup msw
+
+```
+pnpx msw init public/ --save
 ```
 
 ## Commit 规范

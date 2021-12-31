@@ -3,8 +3,8 @@ import { useRef } from "react"
 import { Transition } from "react-transition-group"
 
 const wrapperStyles: CSSProperties = {
-  height: "100%",
-  width: "100%",
+  height: "100vh",
+  width: "100vw",
   position: "fixed",
   top: 0,
   left: 0
@@ -76,59 +76,3 @@ export const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => {
     </Transition>
   )
 }
-
-// export const Modal: FC<ModalProps> = ({ children, isOpen, onClose, title, primary, secondary }) => {
-
-//   // const transitions = useTransition(isOpen, {
-//   //   from: { transform: "scale(0.5)" },
-//   //   enter: { transform: "scale(1)" },
-//   //   leave: { transform: "scale(0.5)" },
-//   //   reverse: isOpen,
-//   //   delay: 0,
-//   //   config: {
-//   //     duration: 400,
-//   //     tension: 210,
-//   //     friction: 20
-//   //   }
-//   // config: config.molasses,
-//   // onRest: () => set(!show)
-//   // })
-//   return <div className="w-screen h-screen fixed inset-0 flex justify-center items-center border invisible">
-//     { isOpen && <div className="w-10/12 h-8/12 bg-white visible animate-animated animate-fadeIn  animate-faster">
-//       <div className="w-full h-full flex flex-col items-center">
-//         <div className="h-20 ">
-//           {title}
-//         </div>
-//         <div className="overflow-y-scroll">
-//           {children}
-//         </div>
-//         {primary && <button
-//           className="w-36 py-2 px-4 bg-gray-600 text-center text-fuchsia-200 rounded-full"
-//           onClick={primary.action}
-//           onKeyDown={primary.action}
-//         >{primary.name}</button>}
-//         {secondary && <button
-//           className="w-36 py-2 px-4 bg-fuchsia-00 text-center text-fuchsia-200 rounded-full"
-//           onClick={secondary.action}
-//           onKeyDown={secondary.action}
-//         >{secondary.name}</button>}
-//       </div>
-//     </div>}
-//   </div>
-// }
-
-// type ResponsiveContainerProps = {
-//   style?: CSSProperties
-// }
-// export const ResponsiveContainer: FC<ResponsiveContainerProps> = ({ children, style }) => {
-//   return (
-//     <div
-//       style={style}
-//       className="w-screen h-screen flex flex-col justify-center items-center relative bg-cover"
-//     >
-//       <div className="w-full h-full max-w-md max-h-md">
-//         {children}
-//       </div>
-//     </div>
-//   )
-// }
