@@ -21,7 +21,7 @@ jobs:
         with:
           images: ${{ secrets.DOCKERHUB_IMAGE_NAME }}
           tags: |
-            type=ref,event=branch,pattern=release-v(.*)
+            type=ref,event=branch,pattern=release-v(.*),group=1
           flavor: |
             suffix=-${{ matrix.mode }}
 
