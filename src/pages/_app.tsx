@@ -6,21 +6,18 @@ import { RedirectPage } from "./Redirect.page"
 // const Report = lazy(() => import("./report").then(module => ({ default: module.Report })))
 
 import type { FC } from "react"
-import { Global } from "~/features/global"
 
 // const defaultFetcher = (url: string, token: string) => fetch(url, { headers: { "X-Au-Token": token } })
 //   .then(res => res.json())
 
 export const App: FC = () => {
   return (
-    <Global>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="Login" element={<LoginPage />} />
-          <Route path="/redirect" element={<RedirectPage/>} />
-        </Routes>
-      </BrowserRouter>
-    </Global>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="Login" element={<LoginPage />} />
+        <Route path="/redirect" element={<RedirectPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
