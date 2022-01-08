@@ -4,14 +4,18 @@ import { Content } from "./SliderContent"
 // Import Swiper styles
 import "swiper/css"
 import "swiper/css/pagination"
-
+import type { Data } from "~/interface"
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper"
 
 // install Swiper modules
 SwiperCore.use([Pagination])
 
-export const Slider: FC = () => {
+type SliderProps = {
+  data: Data
+}
+
+export const Slider: FC<SliderProps> = ({ data }) => {
   return (
     <>
       <Swiper
@@ -22,7 +26,7 @@ export const Slider: FC = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <Content>Slide 1</Content>
+          <Content>{data.reply_first.content}</Content>
         </SwiperSlide>
         <SwiperSlide>
           <Content>Slide 2</Content>

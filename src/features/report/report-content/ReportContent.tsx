@@ -1,8 +1,8 @@
 import { useRef } from "react"
-import useSWR from "swr"
 import dayjs, { unix } from "dayjs"
 
 import { ProgressPlayer } from "~/components/progress-player/ProgressPlayer"
+import { Slider } from "~/components/slider"
 
 import type { ReportResponse } from "~/interface"
 
@@ -32,5 +32,9 @@ export const ReportContent: FC<ReportContentProps> = ({ reportData }) => {
   const wrapperRef = useRef(null)
   const sectionRef = useRef(null)
 
-  return <div className=""></div>
+  return (
+    <div className="">
+      <Slider data={data}></Slider>
+    </div>
+  )
 }
