@@ -3,7 +3,6 @@ import type { FC } from "react"
 import { Content } from "./SliderContent"
 // Import Swiper styles
 import "swiper/css"
-import "swiper/css/pagination"
 import type { Data } from "~/interface"
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper"
@@ -18,13 +17,7 @@ type SliderProps = {
 export const Slider: FC<SliderProps> = ({ data }) => {
   return (
     <>
-      <Swiper
-        direction={"vertical"}
-        pagination={{
-          clickable: true,
-        }}
-        className="mySwiper"
-      >
+      <Swiper direction={"vertical"} autoHeight={true} className="mySwiper">
         <SwiperSlide>
           <Content>{data.reply_first.content}</Content>
         </SwiperSlide>
