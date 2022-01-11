@@ -11,11 +11,11 @@ export const reportResponse: ReportResponse = {
   data: {
     user_info: {
       username: "普通的一个魂",
-      startTime: 1600000000,
+      startTime: 1609459200,
     },
     all: {
-      replyCount: 123,
-      danmuCount: 3123,
+      replyCount: 294,
+      danmuCount: 2677,
       dynamicCount: 123,
     },
     reply_first: {
