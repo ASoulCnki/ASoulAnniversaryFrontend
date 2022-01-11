@@ -1,4 +1,5 @@
 const typography = require("@tailwindcss/typography")
+const clamp = require('@tailwindcss/line-clamp')
 
 module.exports = {
   content: [
@@ -42,6 +43,8 @@ module.exports = {
         default3: "url(/background3.svg)",
         default4: "url(/background4.svg)",
         default5: "url(/background5.svg)",
+        default6: "url(/background6.svg)",
+        default7: "url(/background7.svg)",
         "apple-text": "linear-gradient(75deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 33.33%,  rgba(255,255,255,0) 66.67%, rgba(255,255,255,0) 100%)"
       },
       backgroundSize: {
@@ -50,6 +53,7 @@ module.exports = {
     }
   },
   plugins: [
-    typography
+    typography,
+    clamp
   ]
 }

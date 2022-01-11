@@ -20,6 +20,19 @@ interface slide extends Element {
   progress: number
 }
 
+const getMemberName = (uid: number) => {
+  enum Member {
+    "A-SOUL_Official" = 703007996,
+    "向晚大魔王" = 672346917,
+    "贝拉kira" = 672353429,
+    "珈乐Carol" = 351609538,
+    "嘉然今天吃什么" = 672328094,
+    "乃琳Queen" = 672342685,
+  }
+
+  return Member[uid]
+}
+
 export const Slider: FC<SliderProps> = ({ data }) => {
   const [progress, setProgress] = useState(1)
   const fills = useRef<HTMLInputElement | null>(null)
@@ -70,6 +83,8 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         <div className="bg-default3 fill absolute w-full h-full"></div>
         <div className="bg-default4 fill absolute w-full h-full"></div>
         <div className="bg-default5 fill absolute w-full h-full"></div>
+        <div className="bg-default6 fill absolute w-full h-full"></div>
+        <div className="bg-default7 fill absolute w-full h-full"></div>
       </div>
       <Swiper
         effect={"creative"}
@@ -121,14 +136,110 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               src="book-lottie.json"
               progress={progress}
               maxFrame={100}
+              styleClass={"w-70 h-70"}
             ></ProgressPlayer>
           </Content>
         </SwiperSlide>
         <SwiperSlide>
-          <Content>Slide 4</Content>
+          <Content>
+            <div className="text-2xl text-white text-center">
+              <span className="text-3xl">
+                {unix(data.reply_first.time).format("YYYY年M月D日")}
+              </span>
+              ，你第一次在{" "}
+              <span className="text-3xl">
+                {getMemberName(data.reply_first.uid)}
+              </span>{" "}
+              的评论区发送回复，你说：
+            </div>
+            <div className="text-2xl text-white text-center shadow-xl bg-sky-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative max-w-2xl px-12 py-6 m-2">
+              <ProgressPlayer
+                src="qoute-lottie.json"
+                progress={progress}
+                maxFrame={100}
+                styleClass={"w-10 h-10 absolute top-2 left-2"}
+              ></ProgressPlayer>
+              <span className="line-clamp-3">{data.reply_first.content}</span>
+            </div>
+            <div className="text-2xl text-white text-center">
+              这是历史性的一刻！当时的心情，你还记得么？
+            </div>
+          </Content>
         </SwiperSlide>
         <SwiperSlide>
-          <Content>Slide 5</Content>
+          <Content>
+            <div className="text-2xl text-slate-500 text-center">
+              这一年，你在 A-SOUL 的{" "}
+              <span className="text-3xl">{data.reply_total.dynamicNumber}</span>{" "}
+              条动态中留下了属于你的足迹
+            </div>
+            <div className="text-2xl text-slate-500 text-center">
+              一共发送了{" "}
+              <span className="text-3xl">{data.reply_total.replyNumber}</span>{" "}
+              条评论
+            </div>
+            <div className="text-2xl text-slate-500 text-center">
+              超过了{" "}
+              <span className="text-3xl">
+                {(data.reply_total.rank * 100).toFixed(2)}%
+              </span>{" "}
+              的 AU
+            </div>
+          </Content>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Content>
+            <div className="text-2xl text-white text-center">
+              你{" "}
+              <span className="text-3xl">
+                {unix(data.reply_max_used.time).format("YYYY年M月D日")}
+              </span>
+              发布在{" "}
+              <span className="text-3xl">
+                {getMemberName(data.reply_max_used.uid)}
+              </span>{" "}
+              评论区的：
+            </div>
+            <div className="text-2xl text-white text-center shadow-xl bg-sky-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative max-w-2xl px-12 py-6 m-2">
+              <ProgressPlayer
+                src="qoute-lottie.json"
+                progress={progress}
+                maxFrame={100}
+                styleClass={"w-10 h-10 absolute top-2 left-2"}
+              ></ProgressPlayer>
+              <span className="line-clamp-3">
+                {data.reply_max_used.content}
+              </span>
+            </div>
+            <div className="text-2xl text-white text-center">
+              被引用了{" "}
+              <span className="text-3xl">{data.reply_max_used.usedNumber}</span>{" "}
+              次
+            </div>
+            <div className="text-2xl text-white text-center">
+              在AU中排前{" "}
+              <span className="text-3xl">
+                {(data.reply_max_used.rank * 100).toFixed(2)}%{" "}
+              </span>
+            </div>
+          </Content>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Content>
+            <div className="text-2xl text-white text-center">
+              你偏爱在{" "}
+              <span className="text-3xl"> {data.reply_prefer_time.time} </span>
+              发言
+            </div>
+            <div className="text-2xl text-white text-center">
+              全年最{" "}
+              <span className="text-3xl">{data.reply_prefer_time.time[0]}</span>{" "}
+              发送评论的时刻定格于
+              <span className="text-3xl">
+                {data.reply_prefer_time.maxHour}:00
+              </span>
+            </div>
+          </Content>
         </SwiperSlide>
       </Swiper>
     </div>

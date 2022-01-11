@@ -11,12 +11,14 @@ type ProgressPlayerProps = {
   progress: number
   src: string
   maxFrame: number
+  styleClass: string
 }
 
 export const ProgressPlayer: FC<ProgressPlayerProps> = ({
   progress,
   src,
   maxFrame,
+  styleClass,
 }) => {
   const [isReady, setIsReady] = useState(false)
   const playerRef = useRef<Player>(null)
@@ -37,7 +39,7 @@ export const ProgressPlayer: FC<ProgressPlayerProps> = ({
         }
       }}
       src={src}
-      style={{ height: "300px", width: "300px" }}
+      className={styleClass}
     />
   )
 }
