@@ -9,6 +9,10 @@ export const reportResponse: ReportResponse = {
   code: 0,
   message: "",
   data: {
+    user_info: {
+      username: "普通的一个魂",
+      startTime: 1600000000,
+    },
     all: {
       replyCount: 123,
       danmuCount: 3123,
