@@ -234,7 +234,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <div className="text-2xl text-white text-center">
               全年最{" "}
               <span className="text-3xl">{data.reply_prefer_time.time[0]}</span>{" "}
-              发送评论的时刻定格于
+              发送评论的时刻定格于{" "}
               <span className="text-3xl">
                 {data.reply_prefer_time.maxHour}:00
               </span>
