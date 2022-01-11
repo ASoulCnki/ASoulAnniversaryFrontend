@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
-import { setTokenToLocalStorage, useReceiveTokenMessage } from "~/helpers/token"
+import { getTokenFromLocalStorage } from "~/helpers/token"
 import { Modal } from "~/components/modal/Modal"
 import { Cover } from "./Cover"
 import { UserAgreement } from "./UserAgreement"
+import { useNavigate } from "react-router-dom"
 
 import type { FC } from "react"
 
@@ -17,14 +18,21 @@ const getOauthLoginUrl = () => {
 
 export const Login: FC = () => {
   const [isUserAgreementOpen, setIsUserAgreementOpen] = useState(false)
+  const navigate = useNavigate()
 
   const handleCoverPrimaryClick = () => setIsUserAgreementOpen(true)
   const handleUserAgreementAgree = () => {
     setIsUserAgreementOpen(false)
-    window.location.assign(getOauthLoginUrl());
+    window.location.assign(getOauthLoginUrl())
   }
   const handleUserAgreementDisagree = () => setIsUserAgreementOpen(false)
   const handleUserAgreementClose = () => setIsUserAgreementOpen(false)
+
+  useEffect(() => {
+    if (getTokenFromLocalStorage()) {
+      navigate("/")
+    }
+  })
 
   return (
     <>
