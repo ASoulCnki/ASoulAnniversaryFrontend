@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  max-height: 100vh;
+}

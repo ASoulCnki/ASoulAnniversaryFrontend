@@ -9,6 +9,7 @@ export type ReportResponse = {
 }
 
 export type Data = {
+  user_info: UserInfo
   all: All
   reply_first: ReplyFirst
   reply_total: ReplyTotal
@@ -19,6 +20,11 @@ export type Data = {
   reply_max_send_one_day: ReplyMaxSendOneDay
   reply_prefer_time: ReplyPreferTime
   medal: Medal[]
+}
+
+export type UserInfo = {
+  username: string
+  startTime: number
 }
 
 export type All = {
