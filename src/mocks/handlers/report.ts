@@ -30,18 +30,18 @@ export const reportResponse: ReportResponse = {
       rank: 0.87457,
     },
     danmu_total: {
-      danmuNumber: 0,
-      memberUid: 0,
-      memberDanmuNumber: 0,
-      giftNumber: 0,
-      giftCost: 0,
-      scNumber: 0,
-      scCost: 0,
-      rank: 0,
+      danmuNumber: 102,
+      memberUid: 672328094,
+      memberDanmuNumber: 56,
+      giftNumber: 202,
+      giftCost: 296.0,
+      scNumber: 1,
+      scCost: 1,
+      rank: 0.19953,
     },
     reply_total_like: {
-      likeNumber: 0,
-      rank: 0,
+      likeNumber: 53,
+      rank: 0.024351,
     },
     reply_max_like: {
       time: 1609459200,
@@ -58,15 +58,40 @@ export const reportResponse: ReportResponse = {
       rank: 0.1353453,
     },
     reply_max_send_one_day: {
-      date: "",
-      content: "",
-      maxSendNumber: 0,
+      date: "2021-12-01",
+      content: "以后国V第一",
+      maxSendNumber: 314,
     },
     reply_prefer_time: {
       time: "晚上",
       maxHour: 3,
     },
-    medal: [],
+    medal: [
+      {
+        name: "铁血乃淇琳",
+        level: 6,
+      },
+      {
+        name: "爱在黄昏日落时",
+        level: 6,
+      },
+      {
+        name: "涛涛不绝",
+        level: 3,
+      },
+      {
+        name: "才高八斗",
+        level: 2,
+      },
+      {
+        name: "枝江学阀",
+        level: 2,
+      },
+      {
+        name: "爱意绵绵",
+        level: 2,
+      },
+    ],
   },
 }
 
