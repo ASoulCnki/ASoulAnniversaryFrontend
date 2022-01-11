@@ -2,11 +2,15 @@ import { Swiper, SwiperProps, SwiperSlide } from "swiper/react"
 import type { FC } from "react"
 import { Content } from "./SliderContent"
 
-import "swiper/css"
 import type { Data } from "~/interface"
 
-import SwiperCore from "swiper"
+import "swiper/css"
+import "swiper/css/effect-creative"
+
+import SwiperCore, { EffectCreative } from "swiper"
 import { useRef } from "react"
+
+SwiperCore.use([EffectCreative])
 
 type SliderProps = {
   data: Data
@@ -14,10 +18,6 @@ type SliderProps = {
 
 interface slide extends Element {
   progress: number
-}
-
-interface fillNode extends ChildNode {
-  style: CSSStyleDeclaration
 }
 
 export const Slider: FC<SliderProps> = ({ data }) => {
@@ -45,24 +45,22 @@ export const Slider: FC<SliderProps> = ({ data }) => {
     fills.current?.childNodes.forEach((ele, index) => {
       const progress = (slides[index] as slide).progress
       const rate = 1 - Math.max(Math.min(Math.abs(progress), 1), 0)
-      ;(ele as HTMLElement).style.transform =
-        progress < 0 ? `scale(${rate})` : "scale(1)"
+      ;(ele as HTMLElement).style.clipPath =
+        progress < 0 ? `circle(${Math.round(rate * 75)}%)` : "circle(75%)"
     })
   }
 
   return (
     <div className="relative">
-      <div
-        className="fills absolute w-[400vw] h-[400vh] ml-[-150vw] mt-[-50vh]"
-        ref={fills}
-      >
-        <div className="fill absolute bg-slate-500 w-full h-full rounded-full"></div>
-        <div className="fill absolute bg-lime-200 w-full h-full rounded-full scale-0"></div>
-        <div className="fill absolute bg-sky-500 w-full h-full rounded-full scale-0"></div>
-        <div className="fill absolute bg-teal-500 w-full h-full rounded-full scale-0"></div>
-        <div className="fill absolute bg-fuchsia-400 w-full h-full rounded-full scale-0"></div>
+      <div className="fills absolute w-[100vw] h-[200vh]" ref={fills}>
+        <div className="bg-default1 fill absolute w-full h-full"></div>
+        <div className="bg-default2 fill absolute bg-white w-full h-full"></div>
+        <div className="bg-default3 fill absolute w-full h-full"></div>
+        <div className="bg-default4 fill absolute w-full h-full"></div>
+        <div className="bg-default5 fill absolute w-full h-full"></div>
       </div>
       <Swiper
+        effect={"creative"}
         onSetTranslate={setTranslate}
         onSetTransition={setTransition}
         direction={"vertical"}
@@ -70,7 +68,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         className="mySwiper"
         watchSlidesProgress={true}
         creativeEffect={effect}
-        speed={800}
+        grabCursor={true}
       >
         <SwiperSlide>
           <Content>{data.reply_first.content}</Content>
