@@ -136,7 +136,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               src="book-lottie.json"
               progress={progress}
               maxFrame={100}
-              styleClass={"w-20 h-20"}
+              styleClass={"w-60 h-60"}
             ></ProgressPlayer>
           </Content>
         </SwiperSlide>
