@@ -12,6 +12,11 @@ const { VITE_APP_REPORT_DATA_URL } = import.meta.env
 export const useReportData = () => {
   const token = getTokenFromLocalStorage()
   const navigate = useNavigate()
+  useEffect(() => {
+    if (!token) {
+      navigate("/login")
+    }
+  })
   const fetcher = (url: string, token: string) =>
     fetch(url, {
       method: "POST",
