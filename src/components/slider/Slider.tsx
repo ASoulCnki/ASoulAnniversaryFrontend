@@ -136,7 +136,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               src="book-lottie.json"
               progress={progress}
               maxFrame={100}
-              styleClass={"w-70 h-70"}
+              styleClass={"w-20 h-20"}
             ></ProgressPlayer>
           </Content>
         </SwiperSlide>
@@ -193,7 +193,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               你{" "}
               <span className="text-3xl">
                 {unix(data.reply_max_used.time).format("YYYY年M月D日")}
-              </span>
+              </span>{" "}
               发布在{" "}
               <span className="text-3xl">
                 {getMemberName(data.reply_max_used.uid)}
