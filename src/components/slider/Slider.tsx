@@ -49,15 +49,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
   }
 
   const onProgress = (swiper: SwiperCore, progress: number) => {
-    const { slides } = swiper
-    let activeProgress = (slides[swiper.activeIndex] as slide).progress
-    if (activeProgress == 1) {
-      setProgress(0)
-    } else if (activeProgress == -1) {
-      setProgress(0)
-    } else {
-      setProgress(activeProgress)
-    }
+    const totalProgress = progress * (swiper.slides.length - 1)
+    const progressNum = totalProgress - Math.trunc(totalProgress)
+    setProgress(progressNum)
   }
   const setTransition = (swiper: SwiperCore, speed: number) => {
     fills.current?.childNodes.forEach(ele => {
@@ -102,15 +96,18 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Content>
             <div className="text-2xl text-slate-500 text-center">
               你好,{" "}
-              <span className="text-3xl"> {data.user_info.username} </span>
+              <span className="text-3xl font-source-han-serif font-bold">
+                {" "}
+                {data.user_info.username}{" "}
+              </span>
             </div>
             <div className="text-2xl text-slate-500 text-center">
               从{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {unix(data.user_info.startTime).format("YYYY年M月D日")}
               </span>{" "}
               开始，你已经陪伴A-SOUL走过了{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {dayjs().diff(unix(data.user_info.startTime), "d")}
               </span>{" "}
               天
@@ -121,16 +118,27 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Content>
             <div className="text-2xl text-white text-center">
               这一年，AU 们一起发送了{" "}
-              <span className="text-3xl"> {data.all.replyCount} </span>{" "}
-              万条评论,
-              <span className="text-3xl"> {data.all.danmuCount} </span> 万条弹幕
+              <span className="text-3xl font-source-han-serif font-bold">
+                {" "}
+                {data.all.replyCount}万{" "}
+              </span>{" "}
+              条评论,
+              <span className="text-3xl font-source-han-serif font-bold">
+                {" "}
+                {data.all.danmuCount}万{" "}
+              </span>{" "}
+              条弹幕
             </div>
           </Content>
         </SwiperSlide>
         <SwiperSlide>
           <Content>
             <div className="text-2xl text-fuchsia-700 text-center">
-              字数加起来相当于 <span className="text-3xl">800</span> 本西游记{" "}
+              字数加起来相当于{" "}
+              <span className="text-3xl font-source-han-serif font-bold">
+                800
+              </span>{" "}
+              本西游记{" "}
             </div>
             <ProgressPlayer
               src="book-lottie.json"
@@ -143,11 +151,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         <SwiperSlide>
           <Content>
             <div className="text-2xl text-white text-center">
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {unix(data.reply_first.time).format("YYYY年M月D日")}
               </span>
               ，你第一次在{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {getMemberName(data.reply_first.uid)}
               </span>{" "}
               的评论区发送回复，你说：
@@ -170,17 +178,21 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Content>
             <div className="text-2xl text-slate-500 text-center">
               这一年，你在 A-SOUL 的{" "}
-              <span className="text-3xl">{data.reply_total.dynamicNumber}</span>{" "}
+              <span className="text-3xl font-source-han-serif font-bold">
+                {data.reply_total.dynamicNumber}
+              </span>{" "}
               条动态中留下了属于你的足迹
             </div>
             <div className="text-2xl text-slate-500 text-center">
               一共发送了{" "}
-              <span className="text-3xl">{data.reply_total.replyNumber}</span>{" "}
+              <span className="text-3xl font-source-han-serif font-bold">
+                {data.reply_total.replyNumber}
+              </span>{" "}
               条评论
             </div>
             <div className="text-2xl text-slate-500 text-center">
               超过了{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {(data.reply_total.rank * 100).toFixed(2)}%
               </span>{" "}
               的 AU
@@ -191,11 +203,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Content>
             <div className="text-2xl text-white text-center">
               你{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {unix(data.reply_max_used.time).format("YYYY年M月D日")}
               </span>{" "}
               发布在{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {getMemberName(data.reply_max_used.uid)}
               </span>{" "}
               评论区的：
@@ -213,12 +225,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             </div>
             <div className="text-2xl text-white text-center">
               被引用了{" "}
-              <span className="text-3xl">{data.reply_max_used.usedNumber}</span>{" "}
+              <span className="text-3xl font-source-han-serif font-bold">
+                {data.reply_max_used.usedNumber}
+              </span>{" "}
               次
             </div>
             <div className="text-2xl text-white text-center">
               在AU中排前{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {(data.reply_max_used.rank * 100).toFixed(2)}%{" "}
               </span>
             </div>
@@ -228,14 +242,19 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Content>
             <div className="text-2xl text-white text-center">
               你偏爱在{" "}
-              <span className="text-3xl"> {data.reply_prefer_time.time} </span>
+              <span className="text-3xl font-source-han-serif font-bold">
+                {" "}
+                {data.reply_prefer_time.time}{" "}
+              </span>
               发言
             </div>
             <div className="text-2xl text-white text-center">
               全年最{" "}
-              <span className="text-3xl">{data.reply_prefer_time.time[0]}</span>{" "}
+              <span className="text-3xl font-source-han-serif font-bold">
+                {data.reply_prefer_time.time[0]}
+              </span>{" "}
               发送评论的时刻定格于{" "}
-              <span className="text-3xl">
+              <span className="text-3xl font-source-han-serif font-bold">
                 {data.reply_prefer_time.maxHour}:00
               </span>
             </div>
