@@ -9,7 +9,7 @@ export const Redirect: FC = () => {
   usePostTokenMessage()
   useEffect(() => {
     navigate("/")
-  }, []);
+  }, [])
 
-  return <p>完成...</p>
+  return null
 }
