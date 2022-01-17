@@ -34,6 +34,10 @@ module.exports = {
           "Segoe UI Symbol",
           "Noto Color Emoji",
           "sans-serif"
+        ],
+        'source-han-serif': [
+          "source-han-serif-sc",
+          "serif"
         ]
       },
       backgroundImage: {
