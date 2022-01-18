@@ -6,7 +6,7 @@ type WraperProps = {
 
 export const Content: FC = ({ children }) => {
   return (
-    <div className="px-8 h-screen w-screen flex justify-center items-center flex-col">
+    <div className="duration-500 px-8 h-screen w-screen flex justify-center items-center flex-col">
       <div className="max-w-2xl">{children}</div>
     </div>
   )

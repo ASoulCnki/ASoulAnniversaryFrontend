@@ -9,6 +9,7 @@ import { ProgressPlayer } from "~/components/progress-player"
 
 import "swiper/css"
 import "swiper/css/effect-creative"
+import "swiper/css/mousewheel"
 
 SwiperCore.use([Mousewheel, EffectCreative])
 
@@ -58,11 +59,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
     progressMultiplier: 2,
     prev: {
       opacity: 0,
-      translate: [0, -128, 0],
+      translate: [0, -256, 0],
     },
     next: {
       opacity: 0,
-      translate: [0, 128, 0],
+      translate: [0, 256, 0],
     },
   }
 
@@ -72,8 +73,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
   }
 
   const setTransition = (swiper: SwiperCore, speed: number) => {
+    console.log(speed)
     fills.current?.childNodes.forEach(ele => {
-      ;(ele as any).style.transitionDuration = `${speed}ms`
+      ;(ele as HTMLElement).style.transitionDuration = `${speed}ms`
     })
   }
 
@@ -104,8 +106,8 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         )}
         <Wraper background={"bg-default9"} />
         <Wraper background={"bg-default10"} />
-        {data.danmu_total.scNumber && <Wraper background={"bg-default12"} />}
-        <Wraper background={"bg-default11"} />
+        {data.danmu_total.scNumber && <Wraper background={"bg-default11"} />}
+        <Wraper background={"bg-default12"} />
       </div>
       <Swiper
         effect={"creative"}
@@ -114,10 +116,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         onProgress={onProgress}
         direction={"vertical"}
         autoHeight={true}
-        mousewheel={{
-          thresholdTime: 500,
-          sensitivity: 0.8,
-        }}
+        mousewheel={true}
         className="mySwiper"
         watchSlidesProgress={true}
         creativeEffect={effect}
