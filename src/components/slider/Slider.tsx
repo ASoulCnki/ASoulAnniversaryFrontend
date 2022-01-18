@@ -417,8 +417,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         )}
         <SwiperSlide>
           <Content>
-            <div className="text-3xl text-slate-500 text-center">
-              这是你的勋章墙
+            <div className="text-2xl text-slate-500 text-center">
+              这是你的{" "}
+              <span className="text-3xl font-noto-serif-sc font-bold">
+                勋章墙
+              </span>
               <div className="text-2xl text-white text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
                 {data.medal.map(item => (
                   <div className="h-[20vh] flex flex-col justify-center items-center">
@@ -429,6 +432,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                     <div className="text-xl font-serif font-black text-slate-500 text-center">{`LV.${item.level}`}</div>
                   </div>
                 ))}
+              </div>
+              <div className="text-2xl text-slate-500 text-center">
+                在这个永不通关的游戏里
+              </div>
+              <div className="text-2xl text-slate-500 text-center">
+                还有很多成就等着你继续去解锁
               </div>
             </div>
           </Content>

@@ -35,7 +35,14 @@ module.exports = {
           "Noto Color Emoji",
           "sans-serif"
         ],
-        'noto-serif-sc': [
+        serif: [
+          "ui-serif",
+          "Cambria",
+          "Times New Roman",
+          "Times",
+          "serif"
+        ],
+        "noto-serif-sc": [
           "Noto Serif SC",
           "serif",
           "-apple-system",
