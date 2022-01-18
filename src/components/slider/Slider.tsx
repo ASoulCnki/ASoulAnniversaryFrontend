@@ -188,12 +188,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </span>{" "}
               的评论区发送回复，你说：
             </div>
-            <div className="text-2xl text-white text-center shadow-xl bg-emerald-700 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
+            <div className="text-2xl text-white text-center shadow-xl bg-emerald-700 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-14 py-6 my-2">
               <ProgressPlayer
                 src="qoute-lottie.json"
                 progress={progress}
                 maxFrame={100}
-                styleClass={"w-10 h-10 absolute top-2 left-2"}
+                styleClass={"w-10 h-10 absolute bottom-2 right-2"}
               ></ProgressPlayer>
               <span className="line-clamp-3">{data.reply_first.content}</span>
             </div>
@@ -245,7 +245,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   src="qoute-lottie.json"
                   progress={progress}
                   maxFrame={100}
-                  styleClass={"w-10 h-10 absolute top-2 left-2"}
+                  styleClass={"w-10 h-10 absolute buttom-2 right-2"}
                 ></ProgressPlayer>
                 <span className="line-clamp-3">
                   {data.reply_max_like.content}
@@ -286,7 +286,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 src="qoute-lottie.json"
                 progress={progress}
                 maxFrame={100}
-                styleClass={"w-10 h-10 absolute top-2 left-2"}
+                styleClass={"w-10 h-10 absolute buttom-2 right-2"}
               ></ProgressPlayer>
               <span className="line-clamp-3">
                 {data.reply_max_used.content}
@@ -327,7 +327,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   src="qoute-lottie.json"
                   progress={progress}
                   maxFrame={100}
-                  styleClass={"w-10 h-10 absolute top-2 left-2"}
+                  styleClass={"w-10 h-10 absolute buttom-2 right-2"}
                 ></ProgressPlayer>
                 <span className="line-clamp-3">
                   {data.reply_max_send_one_day.content}
