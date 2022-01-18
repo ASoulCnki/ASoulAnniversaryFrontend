@@ -73,7 +73,6 @@ export const Slider: FC<SliderProps> = ({ data }) => {
   }
 
   const setTransition = (swiper: SwiperCore, speed: number) => {
-    console.log(speed)
     fills.current?.childNodes.forEach(ele => {
       ;(ele as HTMLElement).style.transitionDuration = `${speed}ms`
     })
