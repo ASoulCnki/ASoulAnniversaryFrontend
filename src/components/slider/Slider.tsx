@@ -114,10 +114,10 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         onProgress={onProgress}
         direction={"vertical"}
         autoHeight={true}
+        mousewheel={true}
         className="mySwiper"
         watchSlidesProgress={true}
         creativeEffect={effect}
-        grabCursor={true}
       >
         <SwiperSlide>
           <Content>
@@ -424,11 +424,8 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </span>
               <div className="text-2xl text-white text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
                 {data.medal.map(item => (
-                  <div className="h-[20vh] flex flex-col justify-center items-center">
-                    <img
-                      className="max-h-[75%] max-w-[75%]"
-                      src={`/badge/${item.name}.png`}
-                    />
+                  <div className="mx-2 h-[20vh] md:h-[30vh] flex flex-col justify-center items-center">
+                    <img className="h-[75%]" src={`/badge/${item.name}.svg`} />
                     <div className="text-xl font-serif font-black text-slate-500 text-center">{`LV.${item.level}`}</div>
                   </div>
                 ))}
