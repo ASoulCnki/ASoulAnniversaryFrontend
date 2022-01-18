@@ -23,8 +23,9 @@ export const ProgressPlayer: FC<ProgressPlayerProps> = ({
   const [isReady, setIsReady] = useState(false)
   const playerRef = useRef<Player>(null)
   useEffect(() => {
+    const progressNum = progress - Math.trunc(progress)
     playerRef.current?.setSeeker(
-      Math.round(Math.abs(progress - 0.5) * maxFrame),
+      Math.round(Math.abs(progressNum - 0.5) * maxFrame),
       false,
     )
   }, [isReady, maxFrame, progress])

@@ -2,15 +2,16 @@ import type { FC } from "react"
 import { useRef, useState } from "react"
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react"
 import { Content, Wraper } from "./SliderContent"
-import SwiperCore, { EffectCreative } from "swiper"
+import SwiperCore, { EffectCreative, Mousewheel } from "swiper"
 import dayjs, { unix } from "dayjs"
 import type { Data } from "~/interface"
 import { ProgressPlayer } from "~/components/progress-player"
 
 import "swiper/css"
 import "swiper/css/effect-creative"
+import "swiper/css/mousewheel"
 
-SwiperCore.use([EffectCreative])
+SwiperCore.use([Mousewheel, EffectCreative])
 
 type SliderProps = {
   data: Data
@@ -52,28 +53,29 @@ const getPrefix = (time: string) => {
 }
 
 export const Slider: FC<SliderProps> = ({ data }) => {
-  const [progress, setProgress] = useState(1)
+  const [progress, setProgress] = useState(0)
   const fills = useRef<HTMLInputElement | null>(null)
   const effect = {
     progressMultiplier: 2,
     prev: {
       opacity: 0,
-      translate: [0, -128, 0],
+      translate: [0, -256, 0],
     },
     next: {
       opacity: 0,
-      translate: [0, 128, 0],
+      translate: [0, 256, 0],
     },
   }
 
   const onProgress = (swiper: SwiperCore, progress: number) => {
     const totalProgress = progress * (swiper.slides.length - 1)
-    const progressNum = totalProgress - Math.trunc(totalProgress)
-    setProgress(progressNum)
+    setProgress(totalProgress)
   }
+
   const setTransition = (swiper: SwiperCore, speed: number) => {
+    console.log(speed)
     fills.current?.childNodes.forEach(ele => {
-      ;(ele as any).style.transitionDuration = `${speed}ms`
+      ;(ele as HTMLElement).style.transitionDuration = `${speed}ms`
     })
   }
 
@@ -96,16 +98,16 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         <Wraper background={"bg-default4"} />
         <Wraper background={"bg-default5"} />
         {data.reply_max_like.likeNumber && (
-          <Wraper background={"bg-default8"} />
-        )}
-        <Wraper background={"bg-default6"} />
-        {data.reply_max_send_one_day.maxSendNumber && (
-          <Wraper background={"bg-default9"} />
+          <Wraper background={"bg-default6"} />
         )}
         <Wraper background={"bg-default7"} />
+        {data.reply_max_send_one_day.maxSendNumber && (
+          <Wraper background={"bg-default8"} />
+        )}
+        <Wraper background={"bg-default9"} />
         <Wraper background={"bg-default10"} />
-        {data.danmu_total.scNumber && <Wraper background={"bg-default12"} />}
-        <Wraper background={"bg-default11"} />
+        {data.danmu_total.scNumber && <Wraper background={"bg-default11"} />}
+        <Wraper background={"bg-default12"} />
       </div>
       <Swiper
         effect={"creative"}
@@ -114,6 +116,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         onProgress={onProgress}
         direction={"vertical"}
         autoHeight={true}
+        mousewheel={true}
         className="mySwiper"
         watchSlidesProgress={true}
         creativeEffect={effect}
@@ -423,12 +426,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 勋章墙
               </span>
               <div className="text-2xl text-white text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
-                {data.medal.map(item => (
-                  <div className="h-[20vh] flex flex-col justify-center items-center">
-                    <img
-                      className="max-h-[75%] max-w-[75%]"
-                      src={`/badge/${item.name}.png`}
-                    />
+                {data.medal.map((item, index) => (
+                  <div
+                    key={index}
+                    className="mx-2 h-[20vh] md:h-[30vh] flex flex-col justify-center items-center"
+                  >
+                    <img className="h-[75%]" src={`/badge/${item.name}.svg`} />
                     <div className="text-xl font-serif font-black text-slate-500 text-center">{`LV.${item.level}`}</div>
                   </div>
                 ))}
