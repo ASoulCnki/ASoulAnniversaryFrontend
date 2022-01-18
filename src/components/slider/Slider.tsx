@@ -2,7 +2,7 @@ import type { FC } from "react"
 import { useRef, useState } from "react"
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react"
 import { Content, Wraper } from "./SliderContent"
-import SwiperCore, { EffectCreative } from "swiper"
+import SwiperCore, { EffectCreative, Mousewheel } from "swiper"
 import dayjs, { unix } from "dayjs"
 import type { Data } from "~/interface"
 import { ProgressPlayer } from "~/components/progress-player"
@@ -10,7 +10,7 @@ import { ProgressPlayer } from "~/components/progress-player"
 import "swiper/css"
 import "swiper/css/effect-creative"
 
-SwiperCore.use([EffectCreative])
+SwiperCore.use([Mousewheel, EffectCreative])
 
 type SliderProps = {
   data: Data
@@ -52,7 +52,7 @@ const getPrefix = (time: string) => {
 }
 
 export const Slider: FC<SliderProps> = ({ data }) => {
-  const [progress, setProgress] = useState(1)
+  const [progress, setProgress] = useState(0)
   const fills = useRef<HTMLInputElement | null>(null)
   const effect = {
     progressMultiplier: 2,
@@ -68,9 +68,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
 
   const onProgress = (swiper: SwiperCore, progress: number) => {
     const totalProgress = progress * (swiper.slides.length - 1)
-    const progressNum = totalProgress - Math.trunc(totalProgress)
-    setProgress(progressNum)
+    setProgress(totalProgress)
   }
+
   const setTransition = (swiper: SwiperCore, speed: number) => {
     fills.current?.childNodes.forEach(ele => {
       ;(ele as any).style.transitionDuration = `${speed}ms`
@@ -96,13 +96,13 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         <Wraper background={"bg-default4"} />
         <Wraper background={"bg-default5"} />
         {data.reply_max_like.likeNumber && (
-          <Wraper background={"bg-default8"} />
-        )}
-        <Wraper background={"bg-default6"} />
-        {data.reply_max_send_one_day.maxSendNumber && (
-          <Wraper background={"bg-default9"} />
+          <Wraper background={"bg-default6"} />
         )}
         <Wraper background={"bg-default7"} />
+        {data.reply_max_send_one_day.maxSendNumber && (
+          <Wraper background={"bg-default8"} />
+        )}
+        <Wraper background={"bg-default9"} />
         <Wraper background={"bg-default10"} />
         {data.danmu_total.scNumber && <Wraper background={"bg-default12"} />}
         <Wraper background={"bg-default11"} />
@@ -114,10 +114,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         onProgress={onProgress}
         direction={"vertical"}
         autoHeight={true}
-        mousewheel={true}
+        mousewheel={{
+          thresholdTime: 500,
+          sensitivity: 0.8,
+        }}
         className="mySwiper"
         watchSlidesProgress={true}
         creativeEffect={effect}
+        grabCursor={true}
       >
         <SwiperSlide>
           <Content>
@@ -423,8 +427,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 勋章墙
               </span>
               <div className="text-2xl text-white text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
-                {data.medal.map(item => (
-                  <div className="mx-2 h-[20vh] md:h-[30vh] flex flex-col justify-center items-center">
+                {data.medal.map((item, index) => (
+                  <div
+                    key={index}
+                    className="mx-2 h-[20vh] md:h-[30vh] flex flex-col justify-center items-center"
+                  >
                     <img className="h-[75%]" src={`/badge/${item.name}.svg`} />
                     <div className="text-xl font-serif font-black text-slate-500 text-center">{`LV.${item.level}`}</div>
                   </div>
