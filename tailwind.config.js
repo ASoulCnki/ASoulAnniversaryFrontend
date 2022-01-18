@@ -61,6 +61,10 @@ module.exports = {
       },
       backgroundSize: {
         "size-apple-text": "300% 100%"
+      },
+      gridTemplateRows: {
+        'two': 'repeat(auto-fill, 48%)',
+        'three': 'repeat(auto-fill, 30%)'
       }
     }
   },
