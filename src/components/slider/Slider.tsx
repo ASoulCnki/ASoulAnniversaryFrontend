@@ -105,6 +105,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         <Wraper background={"bg-default7"} />
         <Wraper background={"bg-default10"} />
         {data.danmu_total.scNumber && <Wraper background={"bg-default12"} />}
+        <Wraper background={"bg-default11"} />
       </div>
       <Swiper
         effect={"creative"}
@@ -162,7 +163,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         </SwiperSlide>
         <SwiperSlide>
           <Content>
-            <div className="text-2xl text-fuchsia-700 text-center">
+            <div className="text-2xl text-slate-500 text-center">
               字数加起来相当于{" "}
               <span className="text-3xl font-noto-serif-sc font-bold">800</span>{" "}
               本西游记{" "}
@@ -187,12 +188,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </span>{" "}
               的评论区发送回复，你说：
             </div>
-            <div className="text-2xl text-white text-center shadow-xl bg-emerald-700 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 m-2">
+            <div className="text-2xl text-white text-center shadow-xl bg-emerald-700 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-14 py-6 my-2">
               <ProgressPlayer
                 src="qoute-lottie.json"
                 progress={progress}
                 maxFrame={100}
-                styleClass={"w-10 h-10 absolute top-2 left-2"}
+                styleClass={"w-10 h-10 absolute bottom-2 right-2"}
               ></ProgressPlayer>
               <span className="line-clamp-3">{data.reply_first.content}</span>
             </div>
@@ -239,12 +240,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 </span>{" "}
                 评论区的:
               </div>
-              <div className="text-2xl text-white text-center shadow-xl bg-lime-600 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 m-2">
+              <div className="text-2xl text-white text-center shadow-xl bg-lime-600 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
                 <ProgressPlayer
                   src="qoute-lottie.json"
                   progress={progress}
                   maxFrame={100}
-                  styleClass={"w-10 h-10 absolute top-2 left-2"}
+                  styleClass={"w-10 h-10 absolute buttom-2 right-2"}
                 ></ProgressPlayer>
                 <span className="line-clamp-3">
                   {data.reply_max_like.content}
@@ -280,12 +281,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </span>{" "}
               评论区的：
             </div>
-            <div className="text-2xl text-white text-center shadow-xl bg-sky-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 m-2">
+            <div className="text-2xl text-white text-center shadow-xl bg-sky-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
               <ProgressPlayer
                 src="qoute-lottie.json"
                 progress={progress}
                 maxFrame={100}
-                styleClass={"w-10 h-10 absolute top-2 left-2"}
+                styleClass={"w-10 h-10 absolute buttom-2 right-2"}
               ></ProgressPlayer>
               <span className="line-clamp-3">
                 {data.reply_max_used.content}
@@ -321,12 +322,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 </span>{" "}
                 条评论，其中一条是
               </div>
-              <div className="text-2xl text-white text-center shadow-xl bg-zinc-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 m-2">
+              <div className="text-2xl text-white text-center shadow-xl bg-zinc-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
                 <ProgressPlayer
                   src="qoute-lottie.json"
                   progress={progress}
                   maxFrame={100}
-                  styleClass={"w-10 h-10 absolute top-2 left-2"}
+                  styleClass={"w-10 h-10 absolute buttom-2 right-2"}
                 ></ProgressPlayer>
                 <span className="line-clamp-3">
                   {data.reply_max_send_one_day.content}
@@ -340,7 +341,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         )}
         <SwiperSlide>
           <Content>
-            <div className="text-2xl text-white text-center">
+            <div className="text-2xl text-teal-800 text-center">
               你偏爱在{" "}
               <span className="text-3xl font-noto-serif-sc font-bold">
                 {" "}
@@ -348,7 +349,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </span>
               发言
             </div>
-            <div className="text-2xl text-white text-center">
+            <div className="text-2xl text-teal-800 text-center">
               全年最{" "}
               <span className="text-3xl font-noto-serif-sc font-bold">
                 {getPrefix(data.reply_prefer_time.time)}
@@ -414,6 +415,33 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             </Content>
           </SwiperSlide>
         )}
+        <SwiperSlide>
+          <Content>
+            <div className="text-2xl text-slate-500 text-center">
+              这是你的{" "}
+              <span className="text-3xl font-noto-serif-sc font-bold">
+                勋章墙
+              </span>
+              <div className="text-2xl text-white text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
+                {data.medal.map(item => (
+                  <div className="h-[20vh] flex flex-col justify-center items-center">
+                    <img
+                      className="max-h-[75%] max-w-[75%]"
+                      src={`/badge/${item.name}.png`}
+                    />
+                    <div className="text-xl font-serif font-black text-slate-500 text-center">{`LV.${item.level}`}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="text-2xl text-slate-500 text-center">
+                在这个永不通关的游戏里
+              </div>
+              <div className="text-2xl text-slate-500 text-center">
+                还有很多成就等着你继续去解锁
+              </div>
+            </div>
+          </Content>
+        </SwiperSlide>
       </Swiper>
     </div>
   )
