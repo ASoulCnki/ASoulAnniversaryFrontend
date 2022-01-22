@@ -35,7 +35,7 @@ export const createReportResource = () => {
   const token = getTokenFromLocalStorage() || ""
   const method = "POST"
   const headers: ReportRequestHeaders = {
-    "X-Au-Token": token,
+    authorization: token,
   }
   return wrapPromise<ReportResponse>(
     fetch(VITE_APP_REPORT_DATA_URL, { method, headers }).then<ReportResponse>(

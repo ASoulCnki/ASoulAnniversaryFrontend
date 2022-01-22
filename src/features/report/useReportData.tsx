@@ -20,7 +20,7 @@ export const useReportData = () => {
   const fetcher = (url: string, token: string) =>
     fetch(url, {
       method: "POST",
-      headers: { "X-Au-Token": token },
+      headers: { authorization: token },
     })
       .then(res => res.json())
       .catch(err => {
