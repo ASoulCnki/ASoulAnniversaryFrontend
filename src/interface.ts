@@ -1,5 +1,5 @@
 export type ReportRequestHeaders = {
-  "X-Au-Token": string
+  authorization: string
 }
 
 export type ReportResponse = {
@@ -9,7 +9,7 @@ export type ReportResponse = {
 }
 
 export type Data = {
-  user_info: UserInfo
+  user_data: UserData
   all: All
   reply_first: ReplyFirst
   reply_total: ReplyTotal
@@ -22,9 +22,14 @@ export type Data = {
   medal: Medal[]
 }
 
-export type UserInfo = {
-  username: string
-  startTime: number
+export type UserData = {
+  "username": string
+  "672346917": number
+  "672353429": number
+  "351609538": number
+  "672328094": number
+  "672342685": number
+  "703007996": number
 }
 
 export type All = {
