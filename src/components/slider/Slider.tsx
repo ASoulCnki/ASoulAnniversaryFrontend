@@ -236,7 +236,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   maxFrame={100}
                   styleClass={"w-10 h-10 absolute bottom-2 right-2"}
                 ></ProgressPlayer>
-                <span className="line-clamp-3 text-left">
+                <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_first.content}
                 </span>
               </div>
@@ -307,7 +307,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   maxFrame={100}
                   styleClass={"w-10 h-10 absolute buttom-2 right-2"}
                 ></ProgressPlayer>
-                <span className="line-clamp-3 text-left">
+                <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_max_like.content}
                 </span>
               </div>
@@ -349,7 +349,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   maxFrame={100}
                   styleClass={"w-10 h-10 absolute buttom-2 right-2"}
                 ></ProgressPlayer>
-                <span className="line-clamp-3 text-left">
+                <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_max_used.content}
                 </span>
               </div>
@@ -393,7 +393,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                     maxFrame={100}
                     styleClass={"w-10 h-10 absolute buttom-2 right-2"}
                   ></ProgressPlayer>
-                  <span className="line-clamp-3 text-left">
+                  <span className="line-clamp-3 text-left whitespace-pre-line">
                     {data.reply_max_send_one_day.content}
                   </span>
                 </div>
