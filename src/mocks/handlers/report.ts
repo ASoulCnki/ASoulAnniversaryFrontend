@@ -2,16 +2,21 @@ import { rest } from "msw"
 import type { ReportRequestHeaders, ReportResponse } from "~/interface"
 
 export const reportRequestHeaders: ReportRequestHeaders = {
-  "X-Au-Token": "daskjcnakjsndasa",
+  authorization: "daskjcnakjsndasa",
 }
 
 export const reportResponse: ReportResponse = {
   code: 0,
   message: "",
   data: {
-    user_info: {
-      username: "普通的一个魂",
-      startTime: 1609459200,
+    user_data: {
+      "username": "一般路过一个魂",
+      "672346917": 1615120200,
+      "672353429": 1615120200,
+      "351609538": 1615120200,
+      "672328094": 1615120200,
+      "672342685": 1615120200,
+      "703007996": 1615120200,
     },
     all: {
       replyCount: 294,
@@ -76,7 +81,7 @@ export const reportResponse: ReportResponse = {
         level: 6,
       },
       {
-        name: "涛涛不绝",
+        name: "滔滔不绝",
         level: 3,
       },
       {
