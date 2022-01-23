@@ -62,6 +62,8 @@ const getPrefix = (time: string) => {
 }
 
 export const Slider: FC<SliderProps> = ({ data }) => {
+  // remember to delete this!
+  data.all.danmuCount = 26770000
   const [progress, setProgress] = useState(0)
   const fills = useRef<HTMLInputElement | null>(null)
   const effect = {
@@ -216,9 +218,27 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <div className="text-xl sm:text-2xl text-slate-500 text-center">
               字数加起来相当于{" "}
               <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
-                800
+                {Math.round(
+                  (data.all.danmuCount + data.all.replyCount) / 580000,
+                )}
               </span>{" "}
               本西游记{" "}
+            </div>
+            <div className="text-xl sm:text-2xl text-slate-500 text-center">
+              <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                {Math.round(
+                  (data.all.danmuCount + data.all.replyCount) / 3600000,
+                )}
+              </span>{" "}
+              套莎士比亚全集{" "}
+            </div>
+            <div className="text-xl sm:text-2xl text-slate-500 text-center">
+              <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                {Math.round(
+                  (data.all.danmuCount + data.all.replyCount) / 14000000,
+                )}
+              </span>{" "}
+              部中国通史{" "}
             </div>
             <ProgressPlayer
               src="book-lottie.json"
