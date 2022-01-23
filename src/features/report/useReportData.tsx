@@ -6,6 +6,7 @@ import {
 import type { ReportRequestHeaders, ReportResponse } from "~/interface"
 import useSWR, { SWRResponse } from "swr"
 import { useNavigate } from "react-router-dom"
+import { reportResponse } from "~/mocks/handlers/report"
 
 const { VITE_APP_REPORT_DATA_URL } = import.meta.env
 
@@ -17,17 +18,20 @@ export const useReportData = () => {
       navigate("/login")
     }
   })
-  const fetcher = (url: string, token: string) =>
-    fetch(url, {
+  const fetcher = async (url: string, token: string) => {
+    const res = await fetch(url, {
       method: "POST",
       headers: { authorization: token },
     })
-      .then(res => res.json())
-      .catch(err => {
-        console.log(err)
-        removeTokenFromLocalStorage()
-        navigate("/login")
-      })
+
+    const data = await res.json()
+    if (data.code !== 0) {
+      console.log(data.message)
+      removeTokenFromLocalStorage()
+      navigate("/login")
+    }
+    return data
+  }
 
   const response: SWRResponse = useSWR<ReportResponse>(
     [VITE_APP_REPORT_DATA_URL, token],
