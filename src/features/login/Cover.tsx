@@ -13,7 +13,7 @@ export const Cover: FC<CoverProps> = ({ onPrimaryClick }) => {
   const primaryName = "开启报告"
   // const userAgreementLabel = "我已阅读并同意《用户协议》"
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center relative bg-default bg-cover">
+    <div className="w-full h-full flex flex-col justify-center items-center relative bg-default bg-cover">
       <div className="w-full h-full max-w-screen-md max-h-screen-lg">
         <div className="h-full flex flex-col justify-around items-center">
           <div className="p-4">
@@ -28,19 +28,11 @@ export const Cover: FC<CoverProps> = ({ onPrimaryClick }) => {
             >
               {primaryName}
             </button>
-            {/* <div className="flex items-center ">
-              <input
-                className="h-4 w-4 border border-gray-300 rounded-md bg-blue-600 border-transparent focus:outline-none"
-                type="checkbox"
-                id="user-agreement"
-                checked={agree}
-                onClick={onAgreementToggle}
-                onKeyDown={onAgreementToggle}
-              />
-              <label className="text-fuchsia-300 text-sm" onClick={onAgreementClick} onKeyDown={onAgreementClick} htmlFor="user-agreement">
-                <span className="" >{userAgreementLabel}</span>
-              </label>
-            </div> */}
+            <div className="text-sm sm:text-lg text-cyan-700 text-center bottom-5 left-0 w-full absolute flex justify-center items-center">
+              <div className="w-1/2 text-center">
+                年度报告使用的数据截止至2021年11月24日零点
+              </div>
+            </div>
           </div>
         </div>
       </div>

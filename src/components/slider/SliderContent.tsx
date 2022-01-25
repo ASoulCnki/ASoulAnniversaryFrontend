@@ -6,8 +6,10 @@ type WraperProps = {
 
 export const Content: FC = ({ children }) => {
   return (
-    <div className="relative duration-500 px-8 h-screen w-screen flex justify-center items-center flex-col">
-      <div className="max-w-[80vw]">{children}</div>
+    <div className="slide-centent duration-500 px-8 w-full h-full flex justify-center items-center flex-col">
+      <div className="max-w-[80vw] flex justify-center items-center flex-col h-full">
+        {children}
+      </div>
     </div>
   )
 }
