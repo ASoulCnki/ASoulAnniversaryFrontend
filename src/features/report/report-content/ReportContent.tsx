@@ -1,26 +1,11 @@
 import { useRef } from "react"
 import dayjs, { unix } from "dayjs"
 
-import { ProgressPlayer } from "~/components/progress-player/ProgressPlayer"
 import { Slider } from "~/components/slider"
 
 import type { ReportResponse } from "~/interface"
 
 import type { FC } from "react"
-import {
-  createReportResource,
-  createReportResourceFake,
-} from "./createReportResource"
-import { reportResponse } from "~/mocks/handlers/report"
-// const linearIn = (progress: number, factor: number) => Math.min(progress * (1 / factor), 1)
-
-// const linearOut = (progress: number, factor: number) => Math.min(1 / factor - progress * (1 / factor), 1)
-
-// const linearInOut = (progress: number, factor: number) => progress <= 0.5
-//   ? linearIn(progress, factor)
-//   : linearOut(progress, factor)
-
-// const subProgress = (progress: number, from: number, to: number) => (progress - from) / (to - from)
 
 type ReportContentProps = {
   reportData: ReportResponse

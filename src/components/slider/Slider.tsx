@@ -5,7 +5,7 @@ import { Content, Wraper } from "./SliderContent"
 import SwiperCore, { EffectCreative, Mousewheel } from "swiper"
 import dayjs, { unix } from "dayjs"
 import type { Data, UserData } from "~/interface"
-import { ProgressPlayer } from "~/components/progress-player"
+
 import {
   getFansName,
   getPrefix,
@@ -27,7 +27,6 @@ interface slide extends Element {
 }
 
 export const Slider: FC<SliderProps> = ({ data }) => {
-  const [progress, setProgress] = useState(0)
   const fills = useRef<HTMLInputElement | null>(null)
   const effect = {
     progressMultiplier: 2,
@@ -39,11 +38,6 @@ export const Slider: FC<SliderProps> = ({ data }) => {
       opacity: 0,
       translate: [0, 256, 0],
     },
-  }
-
-  const onProgress = (swiper: SwiperCore, progress: number) => {
-    const totalProgress = progress * (swiper.slides.length - 1)
-    setProgress(totalProgress)
   }
 
   const setTransition = (swiper: SwiperCore, speed: number) => {
@@ -100,7 +94,6 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         effect={"creative"}
         onSetTranslate={setTranslate}
         onSetTransition={setTransition}
-        onProgress={onProgress}
         direction={"vertical"}
         autoHeight={true}
         mousewheel={true}
@@ -204,12 +197,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </span>{" "}
               部中国通史{" "}
             </div>
-            <ProgressPlayer
-              src="book-lottie.json"
-              progress={progress}
-              maxFrame={100}
-              styleClass={"w-60 h-60"}
-            ></ProgressPlayer>
+            <img className="w-36" src="/book.svg" />
           </Content>
         </SwiperSlide>
         {data.reply_first.time !== null ? (
@@ -226,12 +214,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 的评论区发送回复，你说：
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-emerald-700 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-14 py-6 my-2">
-                <ProgressPlayer
-                  src="qoute-lottie.json"
-                  progress={progress}
-                  maxFrame={100}
-                  styleClass={"w-10 h-10 absolute bottom-2 right-2"}
-                ></ProgressPlayer>
+                <div className="absolute right-2 bottom-2">
+                  <img className="w-12" src="/qoute.svg" />
+                </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_first.content}
                 </span>
@@ -297,12 +282,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 评论区的:
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-lime-600 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
-                <ProgressPlayer
-                  src="qoute-lottie.json"
-                  progress={progress}
-                  maxFrame={100}
-                  styleClass={"w-10 h-10 absolute buttom-2 right-2"}
-                ></ProgressPlayer>
+                <div className="absolute right-2 bottom-2">
+                  <img className="w-12" src="/qoute.svg" />
+                </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_max_like.content}
                 </span>
@@ -339,12 +321,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 评论区的：
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-sky-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
-                <ProgressPlayer
-                  src="qoute-lottie.json"
-                  progress={progress}
-                  maxFrame={100}
-                  styleClass={"w-10 h-10 absolute buttom-2 right-2"}
-                ></ProgressPlayer>
+                <div className="absolute right-2 bottom-2">
+                  <img className="w-12" src="/qoute.svg" />
+                </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_max_used.content}
                 </span>
@@ -383,12 +362,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   条评论，其中一条是
                 </div>
                 <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-zinc-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
-                  <ProgressPlayer
-                    src="qoute-lottie.json"
-                    progress={progress}
-                    maxFrame={100}
-                    styleClass={"w-10 h-10 absolute buttom-2 right-2"}
-                  ></ProgressPlayer>
+                  <div className="absolute right-2 bottom-2">
+                    <img className="w-12" src="/qoute.svg" />
+                  </div>
                   <span className="line-clamp-3 text-left whitespace-pre-line">
                     {data.reply_max_send_one_day.content}
                   </span>
