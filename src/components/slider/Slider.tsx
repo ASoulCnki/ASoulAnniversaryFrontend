@@ -106,7 +106,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
     <div className="relative h-full">
       <div className="fills absolute w-[100vw] h-[200vh]" ref={fills}>
         <Wraper background={"bg-default1"} />
-        <Wraper background={"bg-default2"} />
+        <Wraper background={"bg-default2 bg-[length:auto_60%]"} />
         <Wraper background={"bg-default3"} />
         {data.reply_first !== null && <Wraper background={"bg-default4"} />}
         {data.reply_total !== null && <Wraper background={"bg-default5"} />}
