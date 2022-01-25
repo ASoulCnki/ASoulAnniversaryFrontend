@@ -17,6 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build
+        env:
+          VITE_APP_TOKEN_KEY: au-token
+          VITE_APP_OAUTH_URL: http://oauth.asoulcnki.asia
+          VITE_APP_REPORT_DATA_URL: https://plain-recipe-2bd0.function-worker.workers.dev/
         run: |
           npm install && \
           npm run build
