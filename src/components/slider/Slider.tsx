@@ -6,6 +6,12 @@ import SwiperCore, { EffectCreative, Mousewheel } from "swiper"
 import dayjs, { unix } from "dayjs"
 import type { Data, UserData } from "~/interface"
 import { ProgressPlayer } from "~/components/progress-player"
+import {
+  getFansName,
+  getPrefix,
+  getStartTime,
+  getMemberName,
+} from "~/helpers/filter"
 
 import "swiper/css"
 import "swiper/css/effect-creative"
@@ -20,49 +26,7 @@ interface slide extends Element {
   progress: number
 }
 
-const getStartTime = (userData: UserData) => {
-  let save: number[] = []
-  Object.values(userData).forEach(ele => {
-    if (typeof ele === "number" && ele !== 0) save.push(ele)
-  })
-  if (save.length !== 0) return Math.min(...save)
-  return -1
-}
-
-const getMemberName = (uid: number) => {
-  enum Member {
-    "A-SOUL_Official" = 703007996,
-    "向晚大魔王" = 672346917,
-    "贝拉kira" = 672353429,
-    "珈乐Carol" = 351609538,
-    "嘉然今天吃什么" = 672328094,
-    "乃琳Queen" = 672342685,
-  }
-
-  return Member[uid]
-}
-
-const getFansName = (uid: number) => {
-  enum Member {
-    "草学长" = 703007996,
-    "顶碗人" = 672346917,
-    "贝极星" = 672353429,
-    "皇珈骑士" = 351609538,
-    "嘉心糖" = 672328094,
-    "奶淇琳" = 672342685,
-  }
-
-  return Member[uid]
-}
-
-const getPrefix = (time: string) => {
-  if (time === "凌晨" || time === "上午") return "早"
-  else return "晚"
-}
-
 export const Slider: FC<SliderProps> = ({ data }) => {
-  // remember to delete this!
-  data.all.danmuCount = 26770000
   const [progress, setProgress] = useState(0)
   const fills = useRef<HTMLInputElement | null>(null)
   const effect = {
@@ -130,6 +94,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Wraper background={"bg-default11"} />
         )}
         {data.medal.length !== 0 && <Wraper background={"bg-default12"} />}
+        <Wraper background={"bg-result bg-cover"} />
       </div>
       <Swiper
         effect={"creative"}
@@ -149,21 +114,21 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 你好,{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {" "}
                   {data.user_data.username}{" "}
                 </span>
               </div>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 从{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {unix(getStartTime(data.user_data)).format("YYYY年M月D日")}
                 </span>{" "}
                 开始
               </div>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 你已经陪伴A-SOUL走过了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {dayjs().diff(unix(getStartTime(data.user_data)), "d")}
                 </span>{" "}
                 天
@@ -178,7 +143,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 你好,{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {" "}
                   {data.user_data.username}{" "}
                 </span>
@@ -199,12 +164,12 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Content>
             <div className="text-xl sm:text-2xl text-white text-center">
               这一年，AU 们一起发送了{" "}
-              <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+              <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                 {" "}
                 {Math.round(data.all.replyCount / 10000)}万{" "}
               </span>{" "}
               条评论,
-              <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+              <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                 {" "}
                 {Math.round(data.all.danmuCount / 10000)}万{" "}
               </span>{" "}
@@ -216,7 +181,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Content>
             <div className="text-xl sm:text-2xl text-slate-500 text-center">
               字数加起来相当于{" "}
-              <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+              <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                 {Math.round(
                   (data.all.danmuCount + data.all.replyCount) / 580000,
                 )}
@@ -224,7 +189,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               本西游记{" "}
             </div>
             <div className="text-xl sm:text-2xl text-slate-500 text-center">
-              <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+              <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                 {Math.round(
                   (data.all.danmuCount + data.all.replyCount) / 3600000,
                 )}
@@ -232,7 +197,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               套莎士比亚全集{" "}
             </div>
             <div className="text-xl sm:text-2xl text-slate-500 text-center">
-              <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+              <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                 {Math.round(
                   (data.all.danmuCount + data.all.replyCount) / 14000000,
                 )}
@@ -251,11 +216,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <SwiperSlide>
             <Content>
               <div className="text-xl sm:text-2xl text-white text-center">
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {unix(data.reply_first.time).format("YYYY年M月D日")}
                 </span>
                 ，你第一次在{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {getMemberName(data.reply_first.uid)}
                 </span>{" "}
                 的评论区发送回复，你说：
@@ -296,21 +261,21 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 这一年，你在 A-SOUL 的{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.reply_total.dynamicNumber}
                 </span>{" "}
                 条动态中留下了属于你的足迹
               </div>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 一共发送了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.reply_total.replyNumber}
                 </span>{" "}
                 条评论
               </div>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 超过了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {(100 - data.reply_total.rank * 100).toFixed(2)}%
                 </span>{" "}
                 的 AU
@@ -322,11 +287,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <SwiperSlide>
             <Content>
               <div className="text-xl sm:text-2xl text-white text-center">
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {unix(data.reply_max_like.time).format("YYYY年M月D日")}
                 </span>
                 ，你发布在{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {getMemberName(data.reply_max_like.uid)}
                 </span>{" "}
                 评论区的:
@@ -344,14 +309,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 包含被引用的，累计获得了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.reply_max_like.likeNumber}
                 </span>{" "}
                 个点赞,
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 在 AU 中取得了前{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {(data.reply_max_like.rank * 100).toFixed(2)}%
                 </span>{" "}
                 的好成绩!
@@ -364,11 +329,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-white text-center">
                 你{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {unix(data.reply_max_used.time).format("YYYY年M月D日")}
                 </span>{" "}
                 发布在{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {getMemberName(data.reply_max_used.uid)}
                 </span>{" "}
                 评论区的：
@@ -386,14 +351,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 被引用了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.reply_max_used.usedNumber}
                 </span>{" "}
                 次
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 在AU中排前{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {(data.reply_max_used.rank * 100).toFixed(2)}%{" "}
                 </span>
               </div>
@@ -405,14 +370,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <SwiperSlide>
               <Content>
                 <div className="text-xl sm:text-2xl text-white text-center">
-                  <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                  <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                     {dayjs(
                       data.reply_max_send_one_day.date,
                       "YYYY-MM-DD",
                     ).format("YYYY年M月D日")}
                   </span>
                   ，你狂发了{" "}
-                  <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                  <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                     {data.reply_max_send_one_day.maxSendNumber}
                   </span>{" "}
                   条评论，其中一条是
@@ -439,7 +404,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-teal-800 text-center">
                 你偏爱在{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {" "}
                   {data.reply_prefer_time.time}{" "}
                 </span>
@@ -447,11 +412,11 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </div>
               <div className="text-xl sm:text-2xl text-teal-800 text-center">
                 全年最{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {getPrefix(data.reply_prefer_time.time)}
                 </span>{" "}
                 发送评论的时刻定格于{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.reply_prefer_time.time} {data.reply_prefer_time.maxHour}{" "}
                   点
                 </span>
@@ -464,7 +429,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-white text-center">
                 这一年，你一共发送了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {" "}
                   {data.danmu_total.danmuNumber}{" "}
                 </span>
@@ -472,19 +437,19 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 其中发给
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {" "}
                   {getMemberName(data.danmu_total.memberUid)}{" "}
                 </span>
                 的有{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.danmu_total.memberDanmuNumber}{" "}
                 </span>
                 条
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 你一定是个{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {`铁血${getFansName(data.danmu_total.memberUid)}`}{" "}
                 </span>
                 吧
@@ -497,14 +462,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-white text-center">
                 这一年, 你一共购买了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.danmu_total.scNumber}{" "}
                 </span>{" "}
                 次醒目留言
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 一共花了{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.danmu_total.scCost}元{" "}
                 </span>{" "}
               </div>
@@ -519,7 +484,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 这是你的{" "}
-                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   勋章墙
                 </span>
                 <div className="text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
@@ -546,6 +511,88 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             </Content>
           </SwiperSlide>
         )}
+        <SwiperSlide>
+          <Content>
+            <div className="shadow-xl bg-neutral-800 border-solid  justify-center flex rounded-lg border-2 border-neutral-700 flex-col p-8 sm:p-12 relative">
+              <div className="absolute top-2 right-2 w-12">
+                <img src="/badge.svg" />
+              </div>
+              <div className="text-3xl sm:text-4xl text-neutral-300 pb-4 text-center font-zcool">
+                枝网年度报告
+              </div>
+              <div className="sm:text-xl text-neutral-300">
+                <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                  {unix(getStartTime(data.user_data)).format("YYYY年M月D日")}
+                </span>{" "}
+                ，<br className="block md:hidden" />
+                是你与 ASOUL 相遇的时间
+              </div>
+              <div className="sm:text-xl text-neutral-300">
+                今年里，你一共发了 <br className="block md:hidden" />
+                <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                  {data.reply_total.replyNumber}
+                </span>{" "}
+                条评论、
+                <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                  {data.danmu_total.danmuNumber}
+                </span>{" "}
+                条弹幕
+                <br />
+                无论是真情实感、偷的小作文，
+                <br className="block md:hidden" />
+                亦或者是诈骗链接，
+                <br className="hidden md:block" />
+                相信你都在
+                <br className="block md:hidden" />
+                用自己的方式表达着喜爱。
+              </div>
+              <div className="sm:text-xl text-neutral-300">
+                {(data.danmu_total.giftNumber !== 0 ||
+                  data.danmu_total.scNumber !== 0) && (
+                  <>
+                    你在直播间中
+                    {data.danmu_total.giftNumber !== 0 && (
+                      <>
+                        送出了{" "}
+                        <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                          {data.danmu_total.giftNumber}
+                        </span>{" "}
+                        次礼物
+                      </>
+                    )}
+                    {data.danmu_total.scNumber !== 0 && (
+                      <>
+                        、
+                        <br className="block md:hidden" />
+                        发送了{" "}
+                        <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                          {data.danmu_total.scNumber}
+                        </span>{" "}
+                        次醒目留言
+                      </>
+                    )}
+                    ,<br />
+                    总共花费{" "}
+                    <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                      {data.danmu_total.giftCost + data.danmu_total.scCost}
+                    </span>{" "}
+                    元 ，<br className="block md:hidden" />
+                    要记得理性消费哦。
+                    <br />
+                  </>
+                )}
+              </div>
+              <div className="sm:text-xl text-neutral-300">
+                这一年，我们与 ASOUL 共同
+                <br className="block md:hidden" />
+                经历了很多快乐的时光，
+                <br />
+                希望你能记住那些瞬间，
+                <br className="block md:hidden" />与 ASOUL 一起继续向前进发～
+              </div>
+            </div>
+          </Content>
+        </SwiperSlide>
       </Swiper>
     </div>
   )

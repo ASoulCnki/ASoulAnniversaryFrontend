@@ -48,6 +48,13 @@ module.exports = {
           "-apple-system",
           "STSong",
           "SimSun"
+        ],
+        "zcool": [
+          "ZCOOL KuaiLe",
+          "cursive",
+          "-apple-system",
+          "STSong",
+          "SimSun"
         ]
       },
       backgroundImage: {
@@ -64,6 +71,7 @@ module.exports = {
         default10: "url(/backgrounds/background10.png)",
         default11: "url(/backgrounds/background11.png)",
         default12: "url(/backgrounds/background12.png)",
+        result: "url(/backgrounds/background-result.svg)",
         arrow: "url(/arrow.svg)",
         "apple-text": "linear-gradient(75deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 33.33%,  rgba(255,255,255,0) 66.67%, rgba(255,255,255,0) 100%)"
       },
