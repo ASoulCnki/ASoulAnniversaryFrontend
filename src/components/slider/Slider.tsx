@@ -9,7 +9,6 @@ import { ProgressPlayer } from "~/components/progress-player"
 
 import "swiper/css"
 import "swiper/css/effect-creative"
-import "swiper/css/mousewheel"
 
 SwiperCore.use([Mousewheel, EffectCreative])
 
@@ -84,26 +83,30 @@ export const Slider: FC<SliderProps> = ({ data }) => {
   }
 
   const setTransition = (swiper: SwiperCore, speed: number) => {
-    fills.current?.childNodes.forEach(ele => {
-      ;(ele as HTMLElement).style.transitionDuration = `${speed}ms`
-    })
+    if (fills.current) {
+      fills.current.childNodes.forEach(ele => {
+        ;(ele as HTMLElement).style.transitionDuration = `${speed}ms`
+      })
+    }
   }
 
   const setTranslate = (swiper: SwiperCore) => {
     const { slides } = swiper
-    fills.current?.childNodes.forEach((ele, index) => {
-      const progress = (slides[index] as slide).progress
-      const rate = 1 - Math.max(Math.min(Math.abs(progress), 1), 0)
-      ;(ele as HTMLElement).style.clipPath =
-        progress < 0 ? `circle(${Math.round(rate * 75)}%)` : "circle(75%)"
-    })
+    if (fills.current) {
+      fills.current.childNodes.forEach((ele, index) => {
+        const progress = (slides[index] as slide).progress
+        const rate = 1 - Math.max(Math.min(Math.abs(progress), 1), 0)
+        ;(ele as HTMLElement).style.clipPath =
+          progress < 0 ? `circle(${Math.round(rate * 75)}%)` : "circle(75%)"
+      })
+    }
   }
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <div className="fills absolute w-[100vw] h-[200vh]" ref={fills}>
         <Wraper background={"bg-default1"} />
-        <Wraper background={"bg-default2"} />
+        <Wraper background={"bg-default2 bg-[length:auto_60%]"} />
         <Wraper background={"bg-default3"} />
         {data.reply_first !== null && <Wraper background={"bg-default4"} />}
         {data.reply_total !== null && <Wraper background={"bg-default5"} />}
@@ -113,7 +116,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           )}
         {data.reply_max_used !== null &&
           data.reply_max_used.usedNumber !== 0 && (
-            <Wraper background={"bg-default7"} />
+            <Wraper background={"bg-default7 bg-[#0E2A47]"} />
           )}
         {data.reply_max_send_one_day !== null &&
           data.reply_max_send_one_day.maxSendNumber !== 0 && (
@@ -165,10 +168,8 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 </span>{" "}
                 天
               </div>
-              <div className="text-1xl text-slate-300 text-center bottom-2 left-0 w-full absolute flex justify-center items-center">
-                <div className="w-1/2 text-center">
-                  年度报告使用的数据截止至2021年11月24日零点
-                </div>
+              <div className="absolute w-full h-10 bottom-10 left-0 flex justify-center items-center z-10">
+                <div className="bg-arrow h-8 w-8 bg-no-repeat animate-arrow"></div>
               </div>
             </Content>
           </SwiperSlide>
@@ -188,10 +189,8 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
                 喜欢的话，不妨关注一下五位姑娘哦～
               </div>
-              <div className="text-1xl text-slate-300 text-center bottom-2 left-0 w-full absolute flex justify-center items-center">
-                <div className="w-1/2 text-center">
-                  年度报告使用的数据截止至2021年11月24日零点
-                </div>
+              <div className="absolute w-full h-10 bottom-10 left-0 flex justify-center items-center z-10">
+                <div className="bg-arrow h-8 w-8 bg-no-repeat animate-arrow"></div>
               </div>
             </Content>
           </SwiperSlide>
@@ -523,14 +522,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
                   勋章墙
                 </span>
-                <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
+                <div className="text-center shadow-xl bg-zinc-300 border-solid rounded-lg border-2 p-4 my-2 grid grid-cols-2 md:grid-cols-3 grid-flow-row">
                   {data.medal.map((item, index) => (
                     <div
                       key={index}
-                      className="mx-2 h-[20vh] md:h-[30vh] flex flex-col justify-center items-center"
+                      className="mx-2 flex flex-col justify-center items-center"
                     >
                       <img
-                        className="h-[75%]"
+                        className="h-24 xl:h-36"
                         src={`/badge/${item.name}.svg`}
                       />
                       <div className="text-xl font-serif font-black text-slate-500 text-center">{`LV.${item.level}`}</div>

@@ -3,10 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
+  height: 100%;
   overflow: hidden;
 }
 
 .swiper-wrapper {
   max-height: 100vh;
+  height: -webkit-fill-available;
+  height: -moz-available;
 }
