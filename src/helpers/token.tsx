@@ -20,7 +20,7 @@ type TokenMessage = {
 export const usePostTokenMessage = () => {
   useEffect(() => {
     const { hash } = window.location
-    if (hash?.startsWith("#token=")) {
+    if (hash.startsWith("#token=")) {
       const [, token] = hash.substring(1).split("=")
       setTokenToLocalStorage(token)
     }
