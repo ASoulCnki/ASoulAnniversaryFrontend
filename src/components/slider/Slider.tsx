@@ -511,88 +511,90 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             </Content>
           </SwiperSlide>
         )}
-        <SwiperSlide>
-          <Content>
-            <div className="shadow-xl bg-neutral-800 border-solid  justify-center flex rounded-lg border-2 border-neutral-700 flex-col p-8 sm:p-12 relative">
-              <div className="absolute top-2 right-2 w-12">
-                <img src="/badge.svg" />
+        {data.reply_first !== null && (
+          <SwiperSlide>
+            <Content>
+              <div className="shadow-xl bg-neutral-800 border-solid  justify-center flex rounded-lg border-2 border-neutral-700 flex-col p-8 sm:p-12 relative">
+                <div className="absolute top-2 right-2 w-12">
+                  <img src="/badge.svg" />
+                </div>
+                <div className="text-3xl sm:text-4xl text-neutral-300 pb-4 text-center font-zcool">
+                  枝网年度报告
+                </div>
+                <div className="sm:text-xl text-neutral-300">
+                  <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                    {unix(getStartTime(data.user_data)).format("YYYY年M月D日")}
+                  </span>{" "}
+                  ，<br className="block md:hidden" />
+                  是你与 ASOUL 相遇的时间
+                </div>
+                <div className="sm:text-xl text-neutral-300">
+                  今年里，你一共发了 <br className="block md:hidden" />
+                  <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                    {data.reply_total.replyNumber}
+                  </span>{" "}
+                  条评论、
+                  <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                    {data.danmu_total && data.danmu_total.danmuNumber}
+                  </span>{" "}
+                  条弹幕
+                  <br />
+                  无论是真情实感、偷的小作文，
+                  <br className="block md:hidden" />
+                  亦或者是诈骗链接，
+                  <br className="hidden md:block" />
+                  相信你都在
+                  <br className="block md:hidden" />
+                  用自己的方式表达着喜爱。
+                </div>
+                <div className="sm:text-xl text-neutral-300">
+                  {(data.danmu_total.giftNumber !== 0 ||
+                    data.danmu_total.scNumber !== 0) && (
+                    <>
+                      你在直播间中
+                      {data.danmu_total.giftNumber !== 0 && (
+                        <>
+                          送出了{" "}
+                          <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                            {data.danmu_total.giftNumber}
+                          </span>{" "}
+                          次礼物
+                        </>
+                      )}
+                      {data.danmu_total.scNumber !== 0 && (
+                        <>
+                          、
+                          <br className="block md:hidden" />
+                          发送了{" "}
+                          <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                            {data.danmu_total.scNumber}
+                          </span>{" "}
+                          次醒目留言
+                        </>
+                      )}
+                      ,<br />
+                      总共花费{" "}
+                      <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                        {data.danmu_total.giftCost + data.danmu_total.scCost}
+                      </span>{" "}
+                      元 ，<br className="block md:hidden" />
+                      要记得理性消费哦。
+                      <br />
+                    </>
+                  )}
+                </div>
+                <div className="sm:text-xl text-neutral-300">
+                  这一年，我们与 ASOUL 共同
+                  <br className="block md:hidden" />
+                  经历了很多快乐的时光，
+                  <br />
+                  希望你能记住那些瞬间，
+                  <br className="block md:hidden" />与 ASOUL 一起继续向前进发～
+                </div>
               </div>
-              <div className="text-3xl sm:text-4xl text-neutral-300 pb-4 text-center font-zcool">
-                枝网年度报告
-              </div>
-              <div className="sm:text-xl text-neutral-300">
-                <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                  {unix(getStartTime(data.user_data)).format("YYYY年M月D日")}
-                </span>{" "}
-                ，<br className="block md:hidden" />
-                是你与 ASOUL 相遇的时间
-              </div>
-              <div className="sm:text-xl text-neutral-300">
-                今年里，你一共发了 <br className="block md:hidden" />
-                <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                  {data.reply_total.replyNumber}
-                </span>{" "}
-                条评论、
-                <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                  {data.danmu_total.danmuNumber}
-                </span>{" "}
-                条弹幕
-                <br />
-                无论是真情实感、偷的小作文，
-                <br className="block md:hidden" />
-                亦或者是诈骗链接，
-                <br className="hidden md:block" />
-                相信你都在
-                <br className="block md:hidden" />
-                用自己的方式表达着喜爱。
-              </div>
-              <div className="sm:text-xl text-neutral-300">
-                {(data.danmu_total.giftNumber !== 0 ||
-                  data.danmu_total.scNumber !== 0) && (
-                  <>
-                    你在直播间中
-                    {data.danmu_total.giftNumber !== 0 && (
-                      <>
-                        送出了{" "}
-                        <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                          {data.danmu_total.giftNumber}
-                        </span>{" "}
-                        次礼物
-                      </>
-                    )}
-                    {data.danmu_total.scNumber !== 0 && (
-                      <>
-                        、
-                        <br className="block md:hidden" />
-                        发送了{" "}
-                        <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                          {data.danmu_total.scNumber}
-                        </span>{" "}
-                        次醒目留言
-                      </>
-                    )}
-                    ,<br />
-                    总共花费{" "}
-                    <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                      {data.danmu_total.giftCost + data.danmu_total.scCost}
-                    </span>{" "}
-                    元 ，<br className="block md:hidden" />
-                    要记得理性消费哦。
-                    <br />
-                  </>
-                )}
-              </div>
-              <div className="sm:text-xl text-neutral-300">
-                这一年，我们与 ASOUL 共同
-                <br className="block md:hidden" />
-                经历了很多快乐的时光，
-                <br />
-                希望你能记住那些瞬间，
-                <br className="block md:hidden" />与 ASOUL 一起继续向前进发～
-              </div>
-            </div>
-          </Content>
-        </SwiperSlide>
+            </Content>
+          </SwiperSlide>
+        )}
       </Swiper>
     </div>
   )
