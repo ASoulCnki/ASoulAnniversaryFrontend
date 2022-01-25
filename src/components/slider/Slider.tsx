@@ -514,8 +514,8 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         {data.reply_first !== null && (
           <SwiperSlide>
             <Content>
-              <div className="shadow-xl bg-neutral-800 border-solid  justify-center flex rounded-lg border-2 border-neutral-700 flex-col p-8 sm:p-12 relative">
-                <div className="absolute top-2 right-2 w-12">
+              <div className="shadow-xl bg-neutral-800 border-solid  justify-center flex rounded-lg border-2 border-neutral-700 flex-col p-6 sm:p-12 relative">
+                <div className="absolute top-2 right-0 w-12">
                   <img src="/badge.svg" />
                 </div>
                 <div className="text-3xl sm:text-4xl text-neutral-300 pb-4 text-center font-zcool">
