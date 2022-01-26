@@ -83,7 +83,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         {data.reply_prefer_time !== null && (
           <Wraper background={"bg-default9"} />
         )}
-        {data.danmu_total !== null && <Wraper background={"bg-default10"} />}
+        {data.danmu_total !== null && data.danmu_total.danmuNumber !== 0 && (
+          <Wraper background={"bg-default10"} />
+        )}
         {data.danmu_total !== null && data.danmu_total.scNumber !== 0 && (
           <Wraper background={"bg-default11"} />
         )}
@@ -404,7 +406,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             </Content>
           </SwiperSlide>
         )}
-        {data.danmu_total && (
+        {data.danmu_total !== null && data.danmu_total.danmuNumber !== 0 && (
           <SwiperSlide>
             <Content>
               <div className="text-xl sm:text-2xl text-white text-center">
