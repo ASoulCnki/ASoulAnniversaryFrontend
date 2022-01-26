@@ -106,7 +106,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <SwiperSlide>
             <Content>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
-                你好,{" "}
+                你好，{" "}
                 <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {" "}
                   {data.user_data.username}{" "}
@@ -135,7 +135,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <SwiperSlide>
             <Content>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
-                你好,{" "}
+                你好，{" "}
                 <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {" "}
                   {data.user_data.username}{" "}
@@ -161,7 +161,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 {" "}
                 {Math.round(data.all.replyCount / 10000)}万{" "}
               </span>{" "}
-              条评论,
+              条评论，
               <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                 {" "}
                 {Math.round(data.all.danmuCount / 10000)}万{" "}
@@ -294,7 +294,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.reply_max_like.likeNumber}
                 </span>{" "}
-                个点赞,
+                个点赞，
               </div>
               <div className="text-xl sm:text-2xl text-white text-center">
                 在 AU 中取得了前{" "}
@@ -437,7 +437,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <SwiperSlide>
             <Content>
               <div className="text-xl sm:text-2xl text-white text-center">
-                这一年, 你一共购买了{" "}
+                这一年，你一共购买了{" "}
                 <span className="text-xl sm:text-2xl font-noto-serif-sc font-bold">
                   {data.danmu_total.scNumber}{" "}
                 </span>{" "}
@@ -548,7 +548,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                           次醒目留言
                         </>
                       )}
-                      ,<br />
+                      ，<br />
                       总共花费{" "}
                       <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
                         {data.danmu_total.giftCost + data.danmu_total.scCost}
