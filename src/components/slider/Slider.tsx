@@ -97,7 +97,6 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         onSetTranslate={setTranslate}
         onSetTransition={setTransition}
         direction={"vertical"}
-        autoHeight={true}
         mousewheel={true}
         className="mySwiper"
         watchSlidesProgress={true}

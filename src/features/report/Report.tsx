@@ -18,7 +18,7 @@ export const Report: FC = () => {
   // }
 
   return (
-    <div className="">
+    <div className="h-full w-full">
       {reportData && <ReportContent reportData={reportData} />}
     </div>
   )
