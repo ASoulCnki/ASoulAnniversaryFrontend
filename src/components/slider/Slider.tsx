@@ -2,9 +2,9 @@ import type { FC } from "react"
 import { useRef, useState } from "react"
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react"
 import { Content, Wraper } from "./SliderContent"
-import SwiperCore, { EffectCreative, Mousewheel } from "swiper"
+import SwiperCore, { EffectCreative, Mousewheel, Lazy } from "swiper"
 import dayjs, { unix } from "dayjs"
-import type { Data, UserData } from "~/interface"
+import type { Data } from "~/interface"
 
 import {
   getFansName,
@@ -16,7 +16,7 @@ import {
 import "swiper/css"
 import "swiper/css/effect-creative"
 
-SwiperCore.use([Mousewheel, EffectCreative])
+SwiperCore.use([Mousewheel, EffectCreative, Lazy])
 
 type SliderProps = {
   data: Data
@@ -101,6 +101,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
         watchSlidesProgress={true}
         creativeEffect={effect}
         grabCursor={true}
+        lazy={{
+          loadPrevNext: true,
+        }}
       >
         {getStartTime(data.user_data) !== -1 ? (
           <SwiperSlide>
@@ -197,7 +200,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </span>{" "}
               部中国通史{" "}
             </div>
-            <img className="w-36" src="/book.svg" />
+            <img className="w-36 swiper-lazy" data-src="/book.svg" />
           </Content>
         </SwiperSlide>
         {data.reply_first.time !== null ? (
@@ -215,7 +218,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-emerald-700 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-14 py-6 my-2">
                 <div className="absolute right-2 bottom-2">
-                  <img className="w-12" src="/qoute.svg" />
+                  <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                 </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_first.content}
@@ -283,7 +286,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-lime-600 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
                 <div className="absolute right-2 bottom-2">
-                  <img className="w-12" src="/qoute.svg" />
+                  <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                 </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_max_like.content}
@@ -322,7 +325,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-sky-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
                 <div className="absolute right-2 bottom-2">
-                  <img className="w-12" src="/qoute.svg" />
+                  <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                 </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
                   {data.reply_max_used.content}
@@ -363,7 +366,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 </div>
                 <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-zinc-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
                   <div className="absolute right-2 bottom-2">
-                    <img className="w-12" src="/qoute.svg" />
+                    <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                   </div>
                   <span className="line-clamp-3 text-left whitespace-pre-line">
                     {data.reply_max_send_one_day.content}
@@ -470,8 +473,8 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                       className="mx-2 flex flex-col justify-center items-center"
                     >
                       <img
-                        className="h-24 xl:h-36"
-                        src={`/badge/${item.name}.svg`}
+                        className="h-24 xl:h-36 swiper-lazy"
+                        data-src={`/badge/${item.name}.svg`}
                       />
                       <div className="text-xl font-serif font-black text-slate-500 text-center">{`LV.${item.level}`}</div>
                     </div>
@@ -492,7 +495,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             <Content>
               <div className="shadow-xl bg-neutral-800 border-solid  justify-center flex rounded-lg border-2 border-neutral-700 flex-col p-6 sm:p-12 relative">
                 <div className="absolute top-2 right-0 w-12">
-                  <img src="/badge.svg" />
+                  <img className="swiper-lazy" data-src="/badge.svg" />
                 </div>
                 <div className="text-3xl sm:text-4xl text-neutral-300 pb-4 text-center font-zcool">
                   枝网年度报告
