@@ -501,13 +501,25 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 <div className="text-3xl sm:text-4xl text-neutral-300 pb-4 text-center font-zcool">
                   枝网年度报告
                 </div>
-                <div className="sm:text-xl text-neutral-300">
-                  <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                    {unix(getStartTime(data.user_data)).format("YYYY年M月D日")}
-                  </span>{" "}
-                  ，<br className="block md:hidden" />
-                  是你与 ASOUL 相遇的时间
-                </div>
+                {getStartTime(data.user_data) !== -1 ? (
+                  <div className="sm:text-xl text-neutral-300">
+                    <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                      {unix(getStartTime(data.user_data)).format(
+                        "YYYY年M月D日",
+                      )}
+                    </span>{" "}
+                    ，<br className="block md:hidden" />
+                    是你与 ASOUL 相遇的时间
+                  </div>
+                ) : (
+                  <div className="sm:text-xl text-neutral-300">
+                    <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                      2020年12月11日
+                    </span>{" "}
+                    ，<br className="block md:hidden" />是 ASOUL
+                    与我们相遇的时间
+                  </div>
+                )}
                 <div className="sm:text-xl text-neutral-300">
                   今年里，你一共发了 <br className="block md:hidden" />
                   <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
@@ -541,21 +553,20 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                             <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
                               {data.danmu_total.giftNumber}
                             </span>{" "}
-                            次礼物
+                            次礼物，
                           </>
                         )}
                         {data.danmu_total.scNumber !== 0 && (
                           <>
-                            、
                             <br className="block md:hidden" />
                             发送了{" "}
                             <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
                               {data.danmu_total.scNumber}
                             </span>{" "}
-                            次醒目留言
+                            次醒目留言，
                           </>
                         )}
-                        ，<br />
+                        <br />
                         总共花费{" "}
                         <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
                           {data.danmu_total.giftCost + data.danmu_total.scCost}
