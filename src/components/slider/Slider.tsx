@@ -88,7 +88,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
           <Wraper background={"bg-default11"} />
         )}
         {data.medal.length !== 0 && <Wraper background={"bg-default12"} />}
-        <Wraper background={"bg-result bg-cover"} />
+        {data.reply_total !== null && (
+          <Wraper background={"bg-result bg-cover"} />
+        )}
       </div>
       <Swiper
         effect={"creative"}
@@ -217,7 +219,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 的评论区发送回复，你说：
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-emerald-700 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-14 py-6 my-2">
-                <div className="absolute right-2 bottom-2">
+                <div className="absolute right-0 bottom-0">
                   <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                 </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
@@ -285,7 +287,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 评论区的:
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-lime-600 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
-                <div className="absolute right-2 bottom-2">
+                <div className="absolute right-0 bottom-0">
                   <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                 </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
@@ -324,7 +326,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 评论区的：
               </div>
               <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-sky-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
-                <div className="absolute right-2 bottom-2">
+                <div className="absolute right-0 bottom-0">
                   <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                 </div>
                 <span className="line-clamp-3 text-left whitespace-pre-line">
@@ -365,7 +367,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   条评论，其中一条是
                 </div>
                 <div className="text-xl sm:text-2xl text-white text-center shadow-xl bg-zinc-900 border-solid w-full items-center justify-center flex rounded-lg border-2 relative px-12 py-6 my-2">
-                  <div className="absolute right-2 bottom-2">
+                  <div className="absolute right-0 bottom-0">
                     <img className="w-12 swiper-lazy" data-src="/qoute.svg" />
                   </div>
                   <span className="line-clamp-3 text-left whitespace-pre-line">
@@ -490,7 +492,7 @@ export const Slider: FC<SliderProps> = ({ data }) => {
             </Content>
           </SwiperSlide>
         )}
-        {data.reply_first !== null && (
+        {data.reply_total !== null && (
           <SwiperSlide>
             <Content>
               <div className="shadow-xl bg-neutral-800 border-solid  justify-center flex rounded-lg border-2 border-neutral-700 flex-col p-6 sm:p-12 relative">
@@ -514,7 +516,9 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   </span>{" "}
                   条评论、
                   <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                    {data.danmu_total && data.danmu_total.danmuNumber}
+                    {data.danmu_total !== null
+                      ? data.danmu_total.danmuNumber
+                      : 0}
                   </span>{" "}
                   条弹幕
                   <br />
@@ -527,40 +531,41 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                   用自己的方式表达着喜爱。
                 </div>
                 <div className="sm:text-xl text-neutral-300">
-                  {(data.danmu_total.giftNumber !== 0 ||
-                    data.danmu_total.scNumber !== 0) && (
-                    <>
-                      你在直播间中
-                      {data.danmu_total.giftNumber !== 0 && (
-                        <>
-                          送出了{" "}
-                          <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                            {data.danmu_total.giftNumber}
-                          </span>{" "}
-                          次礼物
-                        </>
-                      )}
-                      {data.danmu_total.scNumber !== 0 && (
-                        <>
-                          、
-                          <br className="block md:hidden" />
-                          发送了{" "}
-                          <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                            {data.danmu_total.scNumber}
-                          </span>{" "}
-                          次醒目留言
-                        </>
-                      )}
-                      ，<br />
-                      总共花费{" "}
-                      <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
-                        {data.danmu_total.giftCost + data.danmu_total.scCost}
-                      </span>{" "}
-                      元 ，<br className="block md:hidden" />
-                      要记得理性消费哦。
-                      <br />
-                    </>
-                  )}
+                  {data.danmu_total &&
+                    (data.danmu_total.giftNumber !== 0 ||
+                      data.danmu_total.scNumber !== 0) && (
+                      <>
+                        你在直播间中
+                        {data.danmu_total.giftNumber !== 0 && (
+                          <>
+                            送出了{" "}
+                            <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                              {data.danmu_total.giftNumber}
+                            </span>{" "}
+                            次礼物
+                          </>
+                        )}
+                        {data.danmu_total.scNumber !== 0 && (
+                          <>
+                            、
+                            <br className="block md:hidden" />
+                            发送了{" "}
+                            <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                              {data.danmu_total.scNumber}
+                            </span>{" "}
+                            次醒目留言
+                          </>
+                        )}
+                        ，<br />
+                        总共花费{" "}
+                        <span className="text-xl text-neutral-500 sm:text-2xl font-noto-serif-sc font-bold">
+                          {data.danmu_total.giftCost + data.danmu_total.scCost}
+                        </span>{" "}
+                        元 ，<br className="block md:hidden" />
+                        要记得理性消费哦。
+                        <br />
+                      </>
+                    )}
                 </div>
                 <div className="sm:text-xl text-neutral-300">
                   这一年，我们与 ASOUL 共同
