@@ -148,10 +148,14 @@ export const Slider: FC<SliderProps> = ({ data }) => {
                 </span>
               </div>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
-                截至到数据统计时，你似乎还没有关注ASOUL的成员
+                从 2020年12月11日 开始
               </div>
               <div className="text-xl sm:text-2xl text-slate-500 text-center">
-                喜欢的话，不妨关注一下五位姑娘哦～
+                A-SOUL 陪伴我们走过了{" "}
+                <span className="text-2xl sm:text-3xl font-noto-serif-sc font-bold">
+                  {dayjs().diff(unix(1607688000), "d")}
+                </span>{" "}
+                天
               </div>
               <div className="absolute w-full h-10 bottom-10 left-0 flex justify-center items-center z-10">
                 <div className="bg-arrow h-8 w-8 bg-no-repeat animate-arrow"></div>
