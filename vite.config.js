@@ -16,7 +16,7 @@ export default defineConfig(({}) => {
             brotliSize: true,
         })],
     build: {
-      target: "esnext",
+      target: "es2015",
     },
   }
 })
